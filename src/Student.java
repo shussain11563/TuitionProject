@@ -2,6 +2,9 @@ public class Student {
     //private int tuitionDue;
     //TuitionPay
     private Profile profile;
+    
+    public static final int FULL_TIME = true;
+    public static final int PART_TIME = false;
 
     /**
      * CHANGE THIS JAVA DOCS!
@@ -12,7 +15,7 @@ public class Student {
      */
     public Student()
     {
-
+        
     }
 
     public String callProfileGetName() {

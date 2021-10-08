@@ -16,7 +16,7 @@ public class TuitionManager {
     public void run() {
         Scanner scanner = new Scanner(System.in);
         Boolean runProject = false;
-        Roster rosterCollection = new ColRosterlection();
+        Roster rosterCollection = new Roster();
 
 
         while(scanner.hasNextLine()) {
@@ -66,6 +66,7 @@ public class TuitionManager {
             System.out.println("Command '" + commandLineInput + "' not supported!");
     }
 
+
     /**
      * Method that tokenizes the album string and runs the add method in the Collection Class
      * The method also checks the genre with the enum values and also validates the date in the
@@ -91,6 +92,12 @@ public class TuitionManager {
         Major addMajor = Major.valueOf(major);
 
         //Check Type of Add
+        /*
+
+        You could get a command line that is missing some of the data items; in this case, discard the command line and
+        do not process the incomplete command line.
+
+         */
     }
 
     /**
@@ -112,6 +119,18 @@ public class TuitionManager {
             System.out.println("Student is not in the roster.");
     }
 
+    public void runCalculateTuitionDues(String albumDetails, Roster rosterCollection) {
 
+    }
+
+    public void runPayTuition(String albumDetails, Roster rosterCollection) {
+
+    }
+    public void runSetStudyAbroadStatus(String albumDetails, Roster rosterCollection) {
+
+    }
+    public void runSetFinancialAidAmount(String albumDetails, Roster rosterCollection) {
+
+    }
 
 }

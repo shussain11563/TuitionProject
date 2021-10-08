@@ -4,3 +4,5 @@
 .idea/runConfigurations.xml
 .idea/TuitionProject.iml
 .idea/vcs.xml
+out/Major.class
+*.class

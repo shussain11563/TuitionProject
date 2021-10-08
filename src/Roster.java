@@ -3,7 +3,14 @@ public class Roster {
     private int size; //keep track of the number of students in the roster
 
     private int find(Student student) {
-        return 0;
+        for(int i = 0; i < this.size; i++) {
+
+            if(this.roster[i] != null && this.roster[i].callProfileGetName().equals(student.callProfileGetName())
+                    && this.roster[i].callProfileGetMajor().equals(student.callProfileGetMajor())) {
+                return i;
+            }
+        }
+        return -1;
 
     }
     private void grow() {

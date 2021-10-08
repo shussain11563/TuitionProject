@@ -1,4 +1,6 @@
 public class Student {
+    private int tuitionDue;
+    private Profile profile;
 
     /**
      * Constructs and initializes an Student object for temporary use.
@@ -6,9 +8,16 @@ public class Student {
      * @param title the title of the Album.
      * @param artist the artist of the Album.
      */
-    public Student(String name, String major) {
-        this.name = name;
-        this.artist = artist;
+    public Student() {
+
+    }
+
+    public String callProfileGetName() {
+        return this.profile.getName();
+    }
+
+    public String callProfileGetMajor() {
+        return this.profile.getMajor();
     }
 
     public void tuitionDue() {

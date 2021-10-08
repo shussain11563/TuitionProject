@@ -4,7 +4,7 @@
  * @author Sharia Hussain, David Lam
  */
 
-import java.util.Locale;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -74,57 +74,114 @@ public class TuitionManager {
      */
     public void runAddStudent(String rosterDetails, Roster rosterCollection) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
-
+        int intCredits = 0;
         String addType, name, major, credits = "";
+        Boolean xd = true;
 
-        stringTokenizer.nextToken();
         addType = stringTokenizer.nextToken();
         name = stringTokenizer.nextToken();
-        major = stringTokenizer.nextToken().toUpperCase();
-        credits = stringTokenizer.nextToken();
 
+        try {
+            major = stringTokenizer.nextToken().toUpperCase();
 
-        // Checks if the string genre is one of the Genre's Enum Values, If not then set to Unknown
-        if(!(major.equals("CS") || major.equals("IT") || major.equals("BA") || major.equals("EE") || major.equals("ME"))) {
-            System.out.println("'" + major + "' is not a valid major.");
+            try {
+                credits = stringTokenizer.nextToken();
+
+            }
+            catch (NoSuchElementException ex1) {
+                System.out.println("Credits hours missing.");
+                return;
+            }
+        }
+        catch (NoSuchElementException ex){
+            System.out.println("Missing data in command line.");
+            return;
         }
 
-        Major addMajor = Major.valueOf(major);
+        if(!(major.equals("CS") || major.equals("IT") || major.equals("BA") || major.equals("EE") || major.equals("ME"))) {
+            System.out.println("'" + major + "' is not a valid major.");
+            return;
+        }
+
+        try {
+            intCredits = Integer.parseInt(credits);
+        }
+        catch (NumberFormatException ex) {
+            System.out.println("Invalid Credit Hours.");
+            return;
+        }
+
+        if(intCredits < 0) {
+            System.out.println("Credit hours cannot be negative.");
+            return;
+        }
+        else if(intCredits < 3) {
+            System.out.println("Minimum credit hours is 3.");
+            return;
+        }
+        else if(intCredits > 24) {
+            System.out.println("Credit hours exceed the maximum 24.");
+            return;
+        }
+
+        System.out.println("Student Added.");
+
+        // Profile studentProfile = new Profile(name, major);
+        // Student newStudent = new Student();
 
         //Check Type of Add
+
         /*
-
-        You could get a command line that is missing some of the data items; in this case, discard the command line and
-        do not process the incomplete command line.
-
+        when we add we need to run Find: check for name and major
          */
     }
 
     /**
      * Method that tokenizes the album string and runs the remove method in the Collection Class.
      */
-    public void runRemoveStudent(String albumDetails, Roster rosterCollection) {
-        StringTokenizer stringTokenizer = new StringTokenizer(albumDetails, ",");
+    public void runRemoveStudent(String rosterDetails, Roster rosterCollection) {
+        StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
         String name, major = "";
 
         stringTokenizer.nextToken();
         name = stringTokenizer.nextToken();
         major = stringTokenizer.nextToken();
 
-        Student tempStudent = new Student(name, major);
+
+        Profile tempProfile = new Profile(name, major);
+
+        /*
 
         if(rosterCollection.remove(tempStudent))
             System.out.println("Student removed from the roster.");
         else
             System.out.println("Student is not in the roster.");
+
+         */
     }
 
-    public void runCalculateTuitionDues(String albumDetails, Roster rosterCollection) {
-
+    public void runCalculateTuitionDues(String rosterDetails, Roster rosterCollection) {
     }
 
-    public void runPayTuition(String albumDetails, Roster rosterCollection) {
+    public void runPayTuition(String rosterDetails, Roster rosterCollection) {
+        StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
+        String name, major, paymentAmount, date = "";
 
+        stringTokenizer.nextToken();
+        name = stringTokenizer.nextToken();
+        major = stringTokenizer.nextToken();
+        paymentAmount = stringTokenizer.nextToken();
+        date = stringTokenizer.nextToken();
+
+        //Check if payment due is greater than payment amount
+        /*
+
+        if(rosterCollection.remove())
+            System.out.println("Student removed from the roster.");
+        else
+            System.out.println("Student is not in the roster.");
+
+         */
     }
     public void runSetStudyAbroadStatus(String albumDetails, Roster rosterCollection) {
 
@@ -132,5 +189,10 @@ public class TuitionManager {
     public void runSetFinancialAidAmount(String albumDetails, Roster rosterCollection) {
 
     }
-
+    public static void main(String args[]) {
+        Roster xd = new Roster();
+        String temp = "AR,Jane Doe,cS,10";
+        TuitionManager run = new TuitionManager();
+        run.runAddStudent(temp, xd);
+    }
 }

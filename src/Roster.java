@@ -132,6 +132,18 @@ public class Roster {
 
         System.out.println("* list of students ordered by name **");
 
+        String[] names = new String[this.roster.length];
+
+        for(int i = 0; i < this.roster.length; i++)
+        {
+            if(this.roster[i] != null)
+            {
+                //names[i] = this.roster[i].getGenre();
+            }
+        }
+
+        insertionSort(names);
+
         for(int i = 0; i < this.size; i++)
         {
             System.out.println(this.roster[i].toString());
@@ -158,6 +170,29 @@ public class Roster {
         }
 
         System.out.println("* end of roster **");
+    }
+
+    private <T extends Comparable<T>> void insertionSort(T[] arr) {
+        for(int i = 0; i < albums.length; i++) {
+            T key = arr[i];
+            //Album keyPointer = albums[i];
+            /*
+                Student keyPointer = this.roster[i];
+             */
+
+            //might require instance off?
+            int j = i-1;
+
+            while(j>=0 && arr[j]!=null && key!=null && arr[j].compareTo(key)>0)
+            {
+                arr[j + 1] = arr[j];
+                albums[j + 1] = albums[j];
+                j = j - 1;
+            }
+
+            arr[j + 1] = key;
+            albums[j + 1] = keyPointer;
+        }
     }
 
 

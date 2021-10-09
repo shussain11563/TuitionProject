@@ -12,7 +12,10 @@ public class Resident extends Student
     @Override
     public void tuitionDue()
     {
+        if(this.isStatus == FULL_TIME)
+        {
 
+        }
     }
 
     @Override

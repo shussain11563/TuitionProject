@@ -172,6 +172,7 @@ public class Roster {
         System.out.println("* end of roster **");
     }
 
+
     private <T extends Comparable<T>> void insertionSort(T[] arr) {
         for(int i = 0; i < albums.length; i++) {
             T key = arr[i];
@@ -192,6 +193,14 @@ public class Roster {
 
             arr[j + 1] = key;
             albums[j + 1] = keyPointer;
+        }
+    }
+
+    private void calculateTuition()
+    {
+        for(int i = 0; i < this.size; i++)
+        {
+
         }
     }
 

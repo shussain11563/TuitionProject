@@ -6,8 +6,8 @@ public class Student {
     //might set this to public
     //int credit
     
-    public static final int FULL_TIME = true;
-    public static final int PART_TIME = false;
+    public static final boolean FULL_TIME = true;
+    public static final boolean PART_TIME = false;
 
     /**
      * CHANGE THIS JAVA DOCS!

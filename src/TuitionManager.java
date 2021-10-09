@@ -82,8 +82,9 @@ public class TuitionManager {
             name = stringTokenizer.nextToken();
             major = stringTokenizer.nextToken().toUpperCase();
             credits = stringTokenizer.nextToken();
-
         }
+        else
+            return;
 
         try {
             intCredits = Integer.parseInt(credits);
@@ -92,20 +93,41 @@ public class TuitionManager {
             System.out.println("Invalid Credit Hours.");
             return;
         }
-        checkMinMaxCredits(intCredits);
+        if(!checkMinMaxCredits(intCredits))
+            return;
 
-        //Major addMajor = Major.valueOf(major);
+        Major addMajor = Major.valueOf(major);
 
-        System.out.println("Student Added.");
+        Student newStudent = new Student(name, addMajor, intCredits);
+        if(rosterCollection.add(addType, tempStudent))
+            runProcessAddStudent(addType, name, addMajor, intCredits);
+        else {
+            System.out.println("Student is already in the roster");
+        }
 
-        //Student newStudent = new Student(name, addMajor, intCredits);
 
-        //Check Type of Add
 
         /*
         when we add we need to run Find: check for name and major
          */
     }
+
+//    private void runProcessAddStudent(String addType, String name, Major addMajor, int intCredits) {
+//        Student newStudent = new Student(name, addMajor, intCredits);
+//        if(addType.equals("AR")) {
+//
+//        }
+//        else if(addType.equals("AN")) {
+//
+//        }
+//        else if(addType.equals("AT")) {
+//
+//        }
+//        else if(addType.equals("AI")) {
+//
+//        }
+//        System.out.println("Student Added.");
+//    }
 
     private boolean checkAddStudent(String rosterDetails) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
@@ -139,16 +161,20 @@ public class TuitionManager {
         return true;
     }
 
-    private void checkMinMaxCredits(int intCredits) {
+    private boolean checkMinMaxCredits(int intCredits) {
         if(intCredits < 0) {
             System.out.println("Credit hours cannot be negative.");
+            return false;
         }
         else if(intCredits < 3) {
             System.out.println("Minimum credit hours is 3.");
+            return false;
         }
         else if(intCredits > 24) {
             System.out.println("Credit hours exceed the maximum 24.");
+            return false;
         }
+        return true;
     }
 
     /**
@@ -163,7 +189,6 @@ public class TuitionManager {
         major = stringTokenizer.nextToken();
 
 
-        Profile tempProfile = new Profile(name, major);
 
         /*
 
@@ -205,8 +230,20 @@ public class TuitionManager {
 
     }
     public static void main(String args[]) {
+
+        /*
+        AR,Jane Doe,cS,10
+        AR,Jane Doe
+        AR,Jane Doe,CS
+        AR,Jane Doe,CS,2
+        AR,Jane Doe,CS,-10
+        AR,Jane Doe,CS,hi
+
+
+
+         */
         Roster xd = new Roster();
-        String temp = "AR,Jane Doe,cS,10";
+        String temp = "AR,Jane Doe,CS,hi";
         TuitionManager run = new TuitionManager();
         run.runAddStudent(temp, xd);
     }

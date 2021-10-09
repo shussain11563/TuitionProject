@@ -16,8 +16,8 @@ public class Student {
     
     public static final boolean FULL_TIME = true;
     public static final boolean PART_TIME = false;
-    public static final double UNIVERSITY_FEE = 3268;
 
+    public static final double UNIVERSITY_FEE = 3268;
 
 
     /**

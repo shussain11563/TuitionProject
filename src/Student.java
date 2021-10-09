@@ -1,13 +1,24 @@
+import java.text.DecimalFormat;
+
 public class Student {
     //private int tuitionDue;
     //TuitionPay
-    private Profile profile;
-    private int creditHours;
-    //might set this to public
+    public Profile profile;
+    public int creditHours;  //maybe double
+    public double tuitionDue;
+    public double totalPayment;
+    public Date lastPaymentDate;
+    //public int tuitionDue; --> move this today
+    public boolean isStatus; //redundant ----> cant internationa;
+
+    //might set this to private
     //int credit
     
     public static final boolean FULL_TIME = true;
     public static final boolean PART_TIME = false;
+
+    public static final double UNIVERSITY_FEE = 3268;
+
 
     /**
      * CHANGE THIS JAVA DOCS!
@@ -20,9 +31,36 @@ public class Student {
     {
         this.profile = new Profile(name, major);
         this.creditHours = creditHours;
+        this.totalPayment = 0;
+
+        //remove?? or call exception in International
+        if(this.creditHours >= 12)
+        {
+            isStatus = FULL_TIME;
+        }
+        else
+        {
+            isStatus = PART_TIME;
+        }
+
+
+
+        lastPaymentDate = null;
+
     }
 
-    /* redundant code
+
+    @Override
+    public String toString()
+    {
+
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        return String.format("%s:%s:%d credit hours:tuition due:%s:total payment:%s:last payment date: %s", this.profile.getName(), this.profile.getMajor(), this.creditHours,
+                df.format(this.tuitionDue),
+                df.format(this.totalPayment),
+                this.lastPaymentDate.toString());
+    }
+    /* redundant code, maybe not
     public String callProfileGetName() {
         return this.profile.getName();
     }

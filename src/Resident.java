@@ -1,8 +1,26 @@
 public class Resident extends Student
 {
-    public Resident()
+    private static final double FULL_TIME_TUITION = 12536;
+    private static final double PART_TIME_TUITION_RATE = 404;
+
+
+    public Resident(String name, Major major, int creditHours)
     {
-        super(); //change this
+        super(name, major, creditHours); //change this
     }
+
+    @Override
+    public void tuitionDue()
+    {
+
+    }
+
+    @Override
+    public String toString()
+    {
+        return String.format("%s:resident", super.toString());
+    }
+
+
 
 }

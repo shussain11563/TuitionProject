@@ -55,7 +55,7 @@ public class Student {
     {
 
         DecimalFormat df = new DecimalFormat("#,##0.00");
-        return String.format("%s:%s:%d credit hours:tuition due:%s:total payment:%s:last payment date: %s:", this.profile.getName(), this.profile.getMajor(), this.creditHours,
+        return String.format("%s:%s:%d credit hours:tuition due:%s:total payment:%s:last payment date: %s", this.profile.getName(), this.profile.getMajor(), this.creditHours,
                 df.format(this.tuitionDue),
                 df.format(this.totalPayment),
                 this.lastPaymentDate.toString());

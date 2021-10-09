@@ -11,9 +11,15 @@ public class NonResident extends Student
         //throw exception if credit hours not valid
     }
 
-
+    @Override
     public void tuitionDue()
     {
 
+    }
+
+    @Override
+    public String toString()
+    {
+        return String.format("%s:non-resident", super.toString());
     }
 }

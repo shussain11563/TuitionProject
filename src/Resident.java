@@ -15,4 +15,12 @@ public class Resident extends Student
 
     }
 
+    @Override
+    public String toString()
+    {
+        return String.format("%s:resident", super.toString());
+    }
+
+
+
 }

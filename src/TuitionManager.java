@@ -76,7 +76,40 @@ public class TuitionManager {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
         int intCredits = 0;
         String addType, name, major, credits = "";
-        Boolean xd = true;
+
+        if(checkAddStudent(rosterDetails)) {
+            addType = stringTokenizer.nextToken();
+            name = stringTokenizer.nextToken();
+            major = stringTokenizer.nextToken().toUpperCase();
+            credits = stringTokenizer.nextToken();
+
+        }
+
+        try {
+            intCredits = Integer.parseInt(credits);
+        }
+        catch (NumberFormatException ex) {
+            System.out.println("Invalid Credit Hours.");
+            return;
+        }
+        checkMinMaxCredits(intCredits);
+
+        //Major addMajor = Major.valueOf(major);
+
+        System.out.println("Student Added.");
+
+        //Student newStudent = new Student(name, addMajor, intCredits);
+
+        //Check Type of Add
+
+        /*
+        when we add we need to run Find: check for name and major
+         */
+    }
+
+    private boolean checkAddStudent(String rosterDetails) {
+        StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
+        String addType, name, major, credits = "";
 
         addType = stringTokenizer.nextToken();
         name = stringTokenizer.nextToken();
@@ -90,50 +123,32 @@ public class TuitionManager {
             }
             catch (NoSuchElementException ex1) {
                 System.out.println("Credits hours missing.");
-                return;
+                return false;
             }
         }
         catch (NoSuchElementException ex){
             System.out.println("Missing data in command line.");
-            return;
+            return false;
         }
 
         if(!(major.equals("CS") || major.equals("IT") || major.equals("BA") || major.equals("EE") || major.equals("ME"))) {
             System.out.println("'" + major + "' is not a valid major.");
-            return;
+            return false;
         }
 
-        try {
-            intCredits = Integer.parseInt(credits);
-        }
-        catch (NumberFormatException ex) {
-            System.out.println("Invalid Credit Hours.");
-            return;
-        }
+        return true;
+    }
 
+    private void checkMinMaxCredits(int intCredits) {
         if(intCredits < 0) {
             System.out.println("Credit hours cannot be negative.");
-            return;
         }
         else if(intCredits < 3) {
             System.out.println("Minimum credit hours is 3.");
-            return;
         }
         else if(intCredits > 24) {
             System.out.println("Credit hours exceed the maximum 24.");
-            return;
         }
-
-        System.out.println("Student Added.");
-
-        // Profile studentProfile = new Profile(name, major);
-        // Student newStudent = new Student();
-
-        //Check Type of Add
-
-        /*
-        when we add we need to run Find: check for name and major
-         */
     }
 
     /**

@@ -66,7 +66,6 @@ public class TuitionManager {
             System.out.println("Command '" + commandLineInput + "' not supported!");
     }
 
-
     /**
      * Method that tokenizes the album string and runs the add method in the Collection Class
      * The method also checks the genre with the enum values and also validates the date in the
@@ -75,7 +74,7 @@ public class TuitionManager {
     public void runAddStudent(String rosterDetails, Roster rosterCollection) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
         int intCredits = 0;
-        String addType, name, major, credits = "";
+        String addType, name, major, credits, additionalInfo = "";
 
         if(checkAddStudent(rosterDetails)) {
             addType = stringTokenizer.nextToken();
@@ -96,38 +95,58 @@ public class TuitionManager {
         if(!checkMinMaxCredits(intCredits))
             return;
 
-        Major addMajor = Major.valueOf(major);
+        try {
+            additionalInfo = stringTokenizer.nextToken();
+        }
+        catch (NoSuchElementException ex1) {
+        }
 
-        Student newStudent = new Student(name, addMajor, intCredits);
-        if(rosterCollection.add(addType, tempStudent))
-            runProcessAddStudent(addType, name, addMajor, intCredits);
+        Major addMajor = Major.valueOf(major);
+        runProcessAddStudent(rosterCollection, addType, name, addMajor, intCredits, additionalInfo);
+    }
+
+    private void runProcessAddStudent(Roster rosterCollection, String addType, String name, Major addMajor, int intCredits, String additionalInfo) {
+        if(addType.equals("AR")) {
+            Student newResidentStudent = new Resident(name, addMajor, intCredits);
+            finalizeAddStudent(rosterCollection, newResidentStudent);
+        }
+        else if(addType.equals("AN")) {
+            Student newNonResidentStudent = new NonResident(name, addMajor, intCredits);
+            finalizeAddStudent(rosterCollection, newNonResidentStudent);
+        }
+        else if(addType.equals("AT")) {
+            additionalInfo.toUpperCase();
+
+            if(additionalInfo.equals("NY") || additionalInfo.equals("CT")) {
+                State addState = State.valueOf(additionalInfo);
+                Student newTriStateStudent = new TriState(name, addMajor, intCredits, addState);
+                finalizeAddStudent(rosterCollection, newTriStateStudent);
+            }
+            else {
+                System.out.println("Not apart of the tri-state area.");
+                return;
+            }
+        }
+        else if(addType.equals("AI")) {
+            if(intCredits < 12) {
+                System.out.println("Internal students must enroll at least 12 credits.");
+                return;
+            }
+            else {
+                boolean isInternational = Boolean.parseBoolean(additionalInfo.toLowerCase());
+                Student newInternationalStudent = new International(name, addMajor, intCredits, isInternational);
+                finalizeAddStudent(rosterCollection, newInternationalStudent);
+            }
+        }
+    }
+
+    private void finalizeAddStudent(Roster rosterCollection, Student student) {
+        if(rosterCollection.add(student))
+            System.out.println("Student Added.");
         else {
             System.out.println("Student is already in the roster");
         }
-
-
-
-        /*
-        when we add we need to run Find: check for name and major
-         */
     }
-
-//    private void runProcessAddStudent(String addType, String name, Major addMajor, int intCredits) {
-//        Student newStudent = new Student(name, addMajor, intCredits);
-//        if(addType.equals("AR")) {
-//
-//        }
-//        else if(addType.equals("AN")) {
-//
-//        }
-//        else if(addType.equals("AT")) {
-//
-//        }
-//        else if(addType.equals("AI")) {
-//
-//        }
-//        System.out.println("Student Added.");
-//    }
 
     private boolean checkAddStudent(String rosterDetails) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");

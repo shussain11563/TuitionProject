@@ -36,16 +36,16 @@ public class Student {
         //remove?? or call exception in International
         if(this.creditHours >= 12)
         {
-            isStatus = FULL_TIME;
+            this.isStatus = FULL_TIME;
         }
         else
         {
-            isStatus = PART_TIME;
+            this.isStatus = PART_TIME;
         }
 
 
 
-        lastPaymentDate = null;
+        this.lastPaymentDate = null;
 
     }
 

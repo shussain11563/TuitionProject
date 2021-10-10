@@ -1,16 +1,28 @@
 public class NonResident extends Student
 {
-    public NonResident(String name, Major major, int creditHours)
-    {
-        //redundant
+    public NonResident(String name, Major major, int creditHours) {
         super(name, major, creditHours);
     }
 
     @Override
-    public void tuitionDue()
-    {
+    public void tuitionDue() {
+        // Full-Time and Credits > 16
+        if(this.getStatus() == FULL_TIME && this.getCreditHours() > CREDIT_HOURS_MAX) {
+            this.setTuitionDue(Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE +
+                    Student.NON_RES_PART_TIME_TUITION_RATE * (this.getCreditHours()  - CREDIT_HOURS_MAX));
+        }
+        // Full-Time and Credits Between 12 and 16
+        else if(this.getStatus() == FULL_TIME) {
+            this.setTuitionDue(Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE);
+        }
+        // Part-Time
+        else if(this.getStatus() == PART_TIME) {
+            this.setTuitionDue((Student.UNIVERSITY_FEE * PART_TIME_FEE_REDUCTION) +
+                    (Student.NON_RES_PART_TIME_TUITION_RATE * this.getCreditHours()));
+        }
     
-/*
+        /*
+
         //tuition + university free
         if(this.getStatus() == FULL_TIME)
         {
@@ -29,7 +41,6 @@ public class NonResident extends Student
             this.setTuitionDue(this.getTuitionDue() + ((this.getCreditHours() - CREDIT_HOURS_MAX) * PART_TIME_TUITION_RATE));
         }
 
-
         if(FULL_TIME == true && creditHours > 16) {
             // Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE + Student.NON_RES_PART_TIME_TUITION_RATE
             // * (creditHours - 16);
@@ -41,12 +52,11 @@ public class NonResident extends Student
             // (Student.UNIVERSITY_FEE * PART_TIME_FEE_REDUCTION) + (Student.NON_RES_PART_TIME_TUITION_RATE * creditHours);
         }
 
+        */
     }
-    */
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return String.format("%s:non-resident", super.toString());
     }
 }

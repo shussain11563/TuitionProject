@@ -10,6 +10,7 @@ public class Student {
     private Date lastPaymentDate;
     private boolean isStatus; //redundant ----> cant internationa;
 
+    private static final double CREDIT_HOURS_MAX = 16;
 
     public Profile getProfile()
     {
@@ -41,7 +42,16 @@ public class Student {
         return this.isStatus;
     }
 
-    
+    public void setTuitionDue(double tuitionDue)
+    {
+        this.tuitionDue = tuitionDue;
+    }
+
+    public void setCreditHours(int creditHours)
+    {
+        this.creditHours = creditHours;
+    }
+
     public static final boolean FULL_TIME = true;
     public static final boolean PART_TIME = false;
     public static final double UNIVERSITY_FEE_FULL_TIME = 3268;
@@ -72,9 +82,6 @@ public class Student {
         {
             isStatus = PART_TIME;
         }
-
-
-
         lastPaymentDate = null;
 
     }

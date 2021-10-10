@@ -11,7 +11,28 @@ public class International extends NonResident
 
     public void setIsStudyAbroad()
     {
+        //change magic number
+        int minFullTimeCredit = 12;
+        //if already true, return fa;se
+        this.isStudyAbroad = true;
+        //magic number
+        this.setCreditHours(minFullTimeCredit);
 
+        //.....
+
+
+
+    }
+
+    @Override
+    public void tuitionDue()
+    {
+        //call super method
+        if(this.isStudyAbroad)
+        {
+            //remove tuition or just dont
+        }
+        //super.tuitionDue();
     }
 
     //use insttance of in tuition manager to make sure it is an international student

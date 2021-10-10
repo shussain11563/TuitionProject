@@ -21,10 +21,13 @@ public class Roster {
         for(int i = 0; i < this.size; i++)
         {
             //use .equals??
+            /*
             if()
             {
                 return i;
             }
+
+             */
         }
 
         return NOT_FOUND;
@@ -54,7 +57,7 @@ public class Roster {
             this.roster[i] = oldRoster[i];
         }
 
-        this.roster = newRoster;
+        //this.roster = newRoster;
 
     }
 
@@ -142,7 +145,7 @@ public class Roster {
             }
         }
 
-        insertionSort(names);
+        //insertionSort(names);
 
         for(int i = 0; i < this.size; i++)
         {
@@ -174,12 +177,12 @@ public class Roster {
 
 
     private <T extends Comparable<T>> void insertionSort(T[] arr) {
-        for(int i = 0; i < albums.length; i++) {
+        for(int i = 0; i < this.roster.length; i++) {
             T key = arr[i];
             //Album keyPointer = albums[i];
-            /*
-                Student keyPointer = this.roster[i];
-             */
+
+            Student keyPointer = this.roster[i];
+
 
             //might require instance off?
             int j = i-1;
@@ -187,14 +190,16 @@ public class Roster {
             while(j>=0 && arr[j]!=null && key!=null && arr[j].compareTo(key)>0)
             {
                 arr[j + 1] = arr[j];
-                albums[j + 1] = albums[j];
+                this.roster[j + 1] = this.roster[j];
                 j = j - 1;
             }
 
             arr[j + 1] = key;
-            albums[j + 1] = keyPointer;
+            this.roster[j + 1] = keyPointer;
         }
     }
+
+
 
     private void calculateTuition()
     {

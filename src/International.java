@@ -1,27 +1,15 @@
 public class International extends NonResident
 {
     private boolean isStudyAbroad;
-
-    public International(String name, Major major, int creditHours, boolean isStudyAbroad)
-    {
+    private int MIN_FULL_TIME_CREDIT = 12;
+    public International(String name, Major major, int creditHours, boolean isStudyAbroad) {
         super(name, major, creditHours);
         this.isStudyAbroad = isStudyAbroad;
     }
 
-    public void setIsStudyAbroad()
-    {
-
-        //change magic number
-        //int minFullTimeCredit = 12;
-        //if already true, return fa;se
+    public void setIsStudyAbroad() {
         this.isStudyAbroad = true;
-        //magic number
-        this.setCreditHours(minFullTimeCredit);
-
-        //.....
-
-
-
+        this.setCreditHours(MIN_FULL_TIME_CREDIT);
     }
 
     @Override
@@ -40,7 +28,7 @@ public class International extends NonResident
     @Override
     public void tuitionDue()
     {
-        if(creditHours > 16) {
+        if(this.getCreditHours() > CREDIT_HOURS_MAX) {
             // Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE + ADDITIONAL_FEE + Student.NON_RES_PART_TIME_TUITION_RATE
             // * (creditHours - 16);
         }

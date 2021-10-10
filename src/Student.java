@@ -11,8 +11,6 @@ public class Student {
     private Date lastPaymentDate;
     private boolean isStatus; //redundant ----> cant internationa;
 
-    private static final double CREDIT_HOURS_MAX = 16;
-
     public Profile getProfile()
     {
         return this.profile;
@@ -66,6 +64,8 @@ public class Student {
     static final double RES_PART_TIME_TUITION_RATE = 404;
     static final double NON_RES_PART_TIME_TUITION_RATE = 404;
     static final double PART_TIME_FEE_REDUCTION = .8;
+    static final double CREDIT_HOURS_MAX = 16;
+    static final double CREDIT_HOURS_MAX_PART_TIME = 12;
 
 
 
@@ -84,7 +84,7 @@ public class Student {
         this.totalPayment = 0;
 
         //remove?? or call exception in International
-        if(this.creditHours >= 12)
+        if(this.creditHours >= CREDIT_HOURS_MAX_PART_TIME)
         {
             this.isStatus = FULL_TIME;
         }

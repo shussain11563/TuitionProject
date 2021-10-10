@@ -38,7 +38,7 @@ public class TriState extends NonResident
         State ctState = State.CT;
 
         if(state.equals(nyState)) {
-            if(FULL_TIME == true && creditHours > 16 ) {
+            if(FULL_TIME == true && creditHours > CREDIT_HOURS_MAX ) {
                 // (Student.NON_RES_FULL_TIME_TUITION - 4000) + Student.UNIVERSITY_FEE +
                 // Student.NON_RES_PART_TIME_TUITION_RATE * (creditHours - 16);
             }
@@ -50,7 +50,7 @@ public class TriState extends NonResident
             }
         }
         else if(state.equals(ctState)) {
-            if(FULL_TIME == true && creditHours > 16 ) {
+            if(FULL_TIME == true && creditHours > CREDIT_HOURS_MAX ) {
                 // (Student.NON_RES_FULL_TIME_TUITION - 5000) + Student.UNIVERSITY_FEE +
                 // Student.NON_RES_PART_TIME_TUITION_RATE * (creditHours - 16);
             }

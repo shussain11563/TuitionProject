@@ -1,10 +1,5 @@
 public class NonResident extends Student
 {
-    //private static final int TUITION = 29737;
-    //public static final double FULL_TIME_TUITION = 29737;
-    //public static final double PART_TIME_TUITION_RATE = 966;
-//public static final double CREDIT_HOURS_MAX = 16;
-
     public NonResident(String name, Major major, int creditHours)
     {
         //redundant

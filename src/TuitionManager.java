@@ -206,17 +206,14 @@ public class TuitionManager {
         stringTokenizer.nextToken();
         name = stringTokenizer.nextToken();
         major = stringTokenizer.nextToken();
+        Major addMajor = Major.valueOf(major);
 
-
-
-        /*
+        Student tempStudent = new Student(name,addMajor);
 
         if(rosterCollection.remove(tempStudent))
             System.out.println("Student removed from the roster.");
         else
             System.out.println("Student is not in the roster.");
-
-         */
     }
 
     public void runCalculateTuitionDues(String rosterDetails, Roster rosterCollection) {
@@ -242,10 +239,48 @@ public class TuitionManager {
 
          */
     }
-    public void runSetStudyAbroadStatus(String albumDetails, Roster rosterCollection) {
+    public void runSetStudyAbroadStatus(String rosterDetails, Roster rosterCollection) {
+        StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
+        String name, major, isStudyAbroadInfo = "";
+
+        stringTokenizer.nextToken();
+        name = stringTokenizer.nextToken();
+        major = stringTokenizer.nextToken();
+        isStudyAbroadInfo = stringTokenizer.nextToken();
+
+        boolean isStudyAbroad = Boolean.parseBoolean(isStudyAbroadInfo);
+
+
 
     }
-    public void runSetFinancialAidAmount(String albumDetails, Roster rosterCollection) {
+    public void runSetFinancialAidAmount(String rosterDetails, Roster rosterCollection) {
+        StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
+        String name, major, amount = "";
+        int financialAidAmount = 0;
+
+        stringTokenizer.nextToken();
+        name = stringTokenizer.nextToken();
+        major = stringTokenizer.nextToken();
+
+        try {
+            amount = stringTokenizer.nextToken();
+
+        }
+        catch (NoSuchElementException ex1) {
+            System.out.println("Missing the amount.");
+            return;
+        }
+
+        financialAidAmount = Integer.parseInt(amount);
+
+        if(financialAidAmount < 0 || financialAidAmount > 10000)
+            System.out.println("Invalid amount.");
+        else {
+
+        }
+
+
+
 
     }
     public static void main(String args[]) {

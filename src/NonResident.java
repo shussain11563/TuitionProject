@@ -8,13 +8,21 @@ public class NonResident extends Student
     {
         //redundant
         super(name, major, creditHours);
-        //throw exception if credit hours not valid
     }
 
     @Override
     public void tuitionDue()
     {
-
+        if(FULL_TIME == true && creditHours > 16) {
+            // Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE + Student.NON_RES_PART_TIME_TUITION_RATE
+            // * (creditHours - 16);
+        }
+        else if(FULL_TIME == true) {
+            // Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE;
+        }
+        else if(FULL_TIME == false) {
+            // (Student.UNIVERSITY_FEE * PART_TIME_FEE_REDUCTION) + (Student.NON_RES_PART_TIME_TUITION_RATE * creditHours);
+        }
     }
 
     @Override

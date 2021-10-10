@@ -1,7 +1,6 @@
 public class International extends NonResident
 {
     private boolean isStudyAbroad;
-    private static final double ADDITIONAL_FEE = 2650;
 
     public International(String name, Major major, int creditHours, boolean isStudyAbroad)
     {
@@ -11,10 +10,24 @@ public class International extends NonResident
 
     public void setIsStudyAbroad()
     {
-
+        isStudyAbroad = !isStudyAbroad;
     }
 
-    //use insttance of in tuition manager to make sure it is an international student
+    @Override
+    public void tuitionDue()
+    {
+        if(creditHours > 16) {
+            // Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE + ADDITIONAL_FEE + Student.NON_RES_PART_TIME_TUITION_RATE
+            // * (creditHours - 16);
+        }
+        else if(isStudyAbroad == true) {
+            // Student.UNIVERSITY_FEE + ADDITIONAL_FEE ;
+        }
+        else if(isStudyAbroad == false) {
+            // Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE + ADDITIONAL_FEE ;
+        }
+    }
+    //use instance of in tuition manager to make sure it is an international student
 
 
     @Override

@@ -1,14 +1,11 @@
 public class Roster {
     private Student[] roster;
     private int size; //keep track of the number of students in the roster
-    
-    
+
     private static final int NOT_FOUND = -1;
     private static final int INITIAL_CAPACITY = 4;
     private static final int GROWTH_FACTOR = 4;
     private static final int EMPTY = 0;
-    
-    
 
     public Roster()
     {
@@ -203,6 +200,33 @@ public class Roster {
 
     private void calculateTuition()
     {
+        /*
+            check if its resident, non resident, or international for base tuition payment
+            add university fee to all students
+            resident and non resident has no additional fees
+            international has additional fees
+
+            if credit > 16 then
+                resident adds $404 per credit
+                non resident adds $966 per credit
+
+            if part time student (< 12 credits)
+                resident adds $404 per credit
+                non resident adds $966 per credit
+                univesity fee is 80% of $3268
+
+             ___________
+             Remissions
+             NY - $4000 discount
+             CT - $5000 discount
+
+             If International = Student Abroad then no tuition
+                needs to pay the $3268 fee + international fee of 2650
+
+
+         */
+
+
         for(int i = 0; i < this.size; i++)
         {
             this.roster[i].tuitionDue();

@@ -3,6 +3,7 @@ import java.text.DecimalFormat;
 public class Student {
     //private int tuitionDue;
     //TuitionPay
+
     private Profile profile;
     private int creditHours;  //maybe double
     private double tuitionDue;
@@ -52,10 +53,19 @@ public class Student {
         this.creditHours = creditHours;
     }
 
+
     public static final boolean FULL_TIME = true;
     public static final boolean PART_TIME = false;
     public static final double UNIVERSITY_FEE_FULL_TIME = 3268;
     public static final double UNIVERSITY_FEE_PART_TIME = .8 * UNIVERSITY_FEE_FULL_TIME;
+  
+    static final double ADDITIONAL_FEE = 2650;
+    public static final double UNIVERSITY_FEE = 3268;
+    static final double RES_FULL_TIME_TUITION = 12536;
+    static final double NON_RES_FULL_TIME_TUITION = 29737;
+    static final double RES_PART_TIME_TUITION_RATE = 404;
+    static final double NON_RES_PART_TIME_TUITION_RATE = 404;
+    static final double PART_TIME_FEE_REDUCTION = .8;
 
 
 
@@ -76,14 +86,20 @@ public class Student {
         //remove?? or call exception in International
         if(this.creditHours >= 12)
         {
-            isStatus = FULL_TIME;
+            this.isStatus = FULL_TIME;
         }
         else
         {
-            isStatus = PART_TIME;
+            this.isStatus = PART_TIME;
         }
-        lastPaymentDate = null;
 
+        this.lastPaymentDate = null;
+
+
+    }
+
+    public Student(String name, Major major) {
+        this.profile = new Profile(name, major);
     }
 
 

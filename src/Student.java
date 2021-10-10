@@ -3,29 +3,59 @@ import java.text.DecimalFormat;
 public class Student {
     //private int tuitionDue;
     //TuitionPay
-    public Profile profile;
-    public int creditHours;  //maybe double
-    public double tuitionDue;
-    public double totalPayment;
-    public Date lastPaymentDate;
-    //public int tuitionDue; --> move this today
-    public boolean isStatus; //redundant ----> cant internationa;
+    private Profile profile;
+    private int creditHours;  //maybe double
+    private double tuitionDue;
+    private double totalPayment;
+    private Date lastPaymentDate;
+    private boolean isStatus; //redundant ----> cant internationa;
 
-    //might set this to private
-    //int credit
+
+    public Profile getProfile()
+    {
+        return this.profile;
+    }
+
+    public int getCreditHours()
+    {
+        return this.creditHours;
+    }
+
+    public double getTuitionDue()
+    {
+        return this.tuitionDue;
+    }
+
+    public double getTotalPayment()
+    {
+        return this.totalPayment;
+    }
+
+    public Date getLastPaymentDate()
+    {
+        return this.lastPaymentDate;
+    }
+
+    public boolean getStatus()
+    {
+        return this.isStatus;
+    }
+
     
     public static final boolean FULL_TIME = true;
     public static final boolean PART_TIME = false;
+    public static final double UNIVERSITY_FEE_FULL_TIME = 3268;
+    public static final double UNIVERSITY_FEE_PART_TIME = .8 * UNIVERSITY_FEE_FULL_TIME;
 
-    public static final double UNIVERSITY_FEE = 3268;
+
 
 
     /**
      * CHANGE THIS JAVA DOCS!
      * Constructs and initializes an Student object for temporary use.
      * Used for lending, removing, and returning an Album.
-     * @param title the title of the Album.
-     * @param artist the artist of the Album.
+     * @param name
+     * @param major
      */
     public Student(String name, Major major, int creditHours)
     {
@@ -50,6 +80,7 @@ public class Student {
     }
 
 
+
     @Override
     public String toString()
     {
@@ -60,6 +91,8 @@ public class Student {
                 df.format(this.totalPayment),
                 this.lastPaymentDate.toString());
     }
+
+
     /* redundant code, maybe not
     public String callProfileGetName() {
         return this.profile.getName();

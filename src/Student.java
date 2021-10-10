@@ -3,13 +3,62 @@ import java.text.DecimalFormat;
 public class Student {
     //private int tuitionDue;
     //TuitionPay
-    public Profile profile;
-    public int creditHours;  //maybe double
-    public double tuitionDue;
-    public double totalPayment;
-    public Date lastPaymentDate;
-    public boolean isStatus;
 
+    private Profile profile;
+    private int creditHours;  //maybe double
+    private double tuitionDue;
+    private double totalPayment;
+    private Date lastPaymentDate;
+    private boolean isStatus; //redundant ----> cant internationa;
+
+    private static final double CREDIT_HOURS_MAX = 16;
+
+    public Profile getProfile()
+    {
+        return this.profile;
+    }
+
+    public int getCreditHours()
+    {
+        return this.creditHours;
+    }
+
+    public double getTuitionDue()
+    {
+        return this.tuitionDue;
+    }
+
+    public double getTotalPayment()
+    {
+        return this.totalPayment;
+    }
+
+    public Date getLastPaymentDate()
+    {
+        return this.lastPaymentDate;
+    }
+
+    public boolean getStatus()
+    {
+        return this.isStatus;
+    }
+
+    public void setTuitionDue(double tuitionDue)
+    {
+        this.tuitionDue = tuitionDue;
+    }
+
+    public void setCreditHours(int creditHours)
+    {
+        this.creditHours = creditHours;
+    }
+
+
+    public static final boolean FULL_TIME = true;
+    public static final boolean PART_TIME = false;
+    public static final double UNIVERSITY_FEE_FULL_TIME = 3268;
+    public static final double UNIVERSITY_FEE_PART_TIME = .8 * UNIVERSITY_FEE_FULL_TIME;
+  
     static final double ADDITIONAL_FEE = 2650;
     public static final double UNIVERSITY_FEE = 3268;
     static final double RES_FULL_TIME_TUITION = 12536;
@@ -18,11 +67,6 @@ public class Student {
     static final double NON_RES_PART_TIME_TUITION_RATE = 404;
     static final double PART_TIME_FEE_REDUCTION = .8;
 
-    //might set this to private
-    //int credit
-    
-    public static final boolean FULL_TIME = true;
-    public static final boolean PART_TIME = false;
 
 
 
@@ -30,8 +74,8 @@ public class Student {
      * CHANGE THIS JAVA DOCS!
      * Constructs and initializes an Student object for temporary use.
      * Used for lending, removing, and returning an Album.
-     * @param title the title of the Album.
-     * @param artist the artist of the Album.
+     * @param name
+     * @param major
      */
     public Student(String name, Major major, int creditHours)
     {
@@ -49,15 +93,15 @@ public class Student {
             this.isStatus = PART_TIME;
         }
 
-
-
         this.lastPaymentDate = null;
+
 
     }
 
     public Student(String name, Major major) {
         this.profile = new Profile(name, major);
     }
+
 
 
     @Override
@@ -70,6 +114,8 @@ public class Student {
                 df.format(this.totalPayment),
                 this.lastPaymentDate.toString());
     }
+
+
     /* redundant code, maybe not
     public String callProfileGetName() {
         return this.profile.getName();

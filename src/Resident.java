@@ -1,13 +1,46 @@
 public class Resident extends Student
 {
+    private boolean alreadyAwarded;
+
+    private static final double RESIDENTIAL_FINANCIAL_AID_LIMIT = 10000; // UPPER LIMIT
     public Resident(String name, Major major, int creditHours) {
 
+
         super(name, major, creditHours); //change this
+        this.alreadyAwarded = false;
     }
+
+    public void setFinancialAid()
+    {
+        if(alreadyAwarded == false)
+        {
+
+        }
+    }
+
 
     @Override
     public void tuitionDue()
     {
+    /*
+
+        //tuition + fee
+        if(this.getStatus() == FULL_TIME)
+        {
+            this.setTuitionDue((this.getTuitionDue() + FULL_TIME_TUITION));
+            this.setTuitionDue((this.getTuitionDue() + UNIVERSITY_FEE_FULL_TIME));
+        }
+        else if(this.getStatus() == PART_TIME)
+        {
+            this.setTuitionDue((this.getTuitionDue() + (this.getCreditHours() * PART_TIME_TUITION_RATE)));
+            this.setTuitionDue(this.getTuitionDue() + UNIVERSITY_FEE_PART_TIME);
+        }
+
+        //extra credits
+        if(this.getCreditHours() - CREDIT_HOURS_MAX > 0 && this.getStatus() == FULL_TIME)
+        {
+            this.setTuitionDue(this.getTuitionDue() + ((this.getCreditHours() - CREDIT_HOURS_MAX) * PART_TIME_TUITION_RATE));
+
         if(FULL_TIME == true && creditHours > 16) {
             // Student.RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE + Student.RES_PART_TIME_TUITION_RATE * (creditHours - 16);
         }
@@ -16,9 +49,12 @@ public class Resident extends Student
         }
         else if(FULL_TIME == false) {
             // (Student.RES_UNIVERSITY_FEE * PART_TIME_FEE_REDUCTION) + (Student.RES_PART_TIME_TUITION_RATE * creditHours);
+
         }
 
-    }
+    } 
+    */
+
 
     @Override
     public String toString()
@@ -26,6 +62,12 @@ public class Resident extends Student
         return String.format("%s:resident", super.toString());
     }
 
+    public static void main(String[] args)
+    {
+        System.out.println("Hello");
+        Student s1 = new Resident("Sharia Hussain", Major.CS, 12);
+        //System.out.println(s1.test());
 
+    }
 
 }

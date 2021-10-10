@@ -55,7 +55,7 @@ public class TuitionManager {
         else if(commandLineInput.charAt(0) == 'D')
             runRemoveStudent(commandLineInput, rosterCollection);
         else if(commandLineInput.charAt(0) == 'C')
-            runCalculateTuitionDues(commandLineInput, rosterCollection);
+            runCalculateTuitionDues(rosterCollection);
         else if(commandLineInput.charAt(0) == 'T')
             runPayTuition(commandLineInput, rosterCollection);
         else if(commandLineInput.charAt(0) == 'S')
@@ -216,7 +216,9 @@ public class TuitionManager {
             System.out.println("Student is not in the roster.");
     }
 
-    public void runCalculateTuitionDues(String rosterDetails, Roster rosterCollection) {
+    public void runCalculateTuitionDues(Roster rosterCollection) {
+        rosterCollection.calculateTuition();
+        System.out.println("Calculation completed.");
     }
 
     public void runPayTuition(String rosterDetails, Roster rosterCollection) {

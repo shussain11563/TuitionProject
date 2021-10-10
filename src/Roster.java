@@ -209,6 +209,7 @@ public class Roster {
     }
 
 
+
     //complete, must reformat
     public void calculateTuition()
     {
@@ -241,7 +242,6 @@ public class Roster {
 
 
          */
-
     }
 
 

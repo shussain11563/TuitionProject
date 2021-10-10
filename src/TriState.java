@@ -14,6 +14,39 @@ public class TriState extends NonResident
     @Override
     public void tuitionDue()
     {
+        State nyState = State.NY;
+        State ctState = State.CT;
+
+        if(state.equals(nyState)) {
+            if(this.getStatus() == FULL_TIME && this.getCreditHours() > CREDIT_HOURS_MAX) {
+                this.setTuitionDue((Student.NON_RES_FULL_TIME_TUITION - NEW_YORK_TUITION_DISCOUNT) + Student.UNIVERSITY_FEE +
+                        Student.NON_RES_PART_TIME_TUITION_RATE * (this.getCreditHours()  - CREDIT_HOURS_MAX));
+            }
+            // Full-Time and Credits Between 12 and 16
+            else if(this.getStatus() == FULL_TIME) {
+                this.setTuitionDue(Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE);
+            }
+            // Part-Time
+            else if(this.getStatus() == PART_TIME) {
+                this.setTuitionDue((Student.UNIVERSITY_FEE * PART_TIME_FEE_REDUCTION) +
+                        (Student.NON_RES_PART_TIME_TUITION_RATE * this.getCreditHours()));
+            }
+        }
+        else if(state.equals(ctState)) {
+            if(this.getStatus() == FULL_TIME && this.getCreditHours() > CREDIT_HOURS_MAX) {
+                this.setTuitionDue((Student.NON_RES_FULL_TIME_TUITION - CONNECTICUT_TUITION_DISCOUNT) + Student.UNIVERSITY_FEE +
+                        Student.NON_RES_PART_TIME_TUITION_RATE * (this.getCreditHours()  - CREDIT_HOURS_MAX));
+            }
+            // Full-Time and Credits Between 12 and 16
+            else if(this.getStatus() == FULL_TIME) {
+                this.setTuitionDue(Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE);
+            }
+            // Part-Time
+            else if(this.getStatus() == PART_TIME) {
+                this.setTuitionDue((Student.UNIVERSITY_FEE * PART_TIME_FEE_REDUCTION) +
+                        (Student.NON_RES_PART_TIME_TUITION_RATE * this.getCreditHours()));
+            }
+        }
     /*
         //maybe call super for this
         //tuition + university free
@@ -38,7 +71,7 @@ public class TriState extends NonResident
         State ctState = State.CT;
 
         if(state.equals(nyState)) {
-            if(FULL_TIME == true && creditHours > 16 ) {
+            if(FULL_TIME == true && creditHours > CREDIT_HOURS_MAX ) {
                 // (Student.NON_RES_FULL_TIME_TUITION - 4000) + Student.UNIVERSITY_FEE +
                 // Student.NON_RES_PART_TIME_TUITION_RATE * (creditHours - 16);
             }
@@ -50,7 +83,7 @@ public class TriState extends NonResident
             }
         }
         else if(state.equals(ctState)) {
-            if(FULL_TIME == true && creditHours > 16 ) {
+            if(FULL_TIME == true && creditHours > CREDIT_HOURS_MAX ) {
                 // (Student.NON_RES_FULL_TIME_TUITION - 5000) + Student.UNIVERSITY_FEE +
                 // Student.NON_RES_PART_TIME_TUITION_RATE * (creditHours - 16);
             }

@@ -261,14 +261,22 @@ public class TuitionManager {
 
     public void runSetStudyAbroadStatus(String rosterDetails, Roster rosterCollection) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
-        String name, major, isStudyAbroadInfo = "";
+        String name, major = "";
 
         stringTokenizer.nextToken();
         name = stringTokenizer.nextToken();
         major = stringTokenizer.nextToken();
-        isStudyAbroadInfo = stringTokenizer.nextToken();
+        Major addMajor = Major.valueOf(major);
 
-        boolean isStudyAbroad = Boolean.parseBoolean(isStudyAbroadInfo);
+        Student tempStudent = new Student(name,addMajor);
+        int holder = rosterCollection.setStudyAbroad(rosterCollection, tempStudent);
+
+        if(holder == -1){
+            System.out.println("Couldn't find the international student.");
+        }
+        else if(holder == 0){
+            System.out.println("Tuition updated.");
+        }
 
     }
     public void runSetFinancialAidAmount(String rosterDetails, Roster rosterCollection) {
@@ -296,10 +304,6 @@ public class TuitionManager {
         else {
 
         }
-
-
-
-
     }
     public static void main(String args[]) {
 

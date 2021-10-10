@@ -2,6 +2,7 @@ public class Roster {
     private Student[] roster;
     private int size; //keep track of the number of students in the roster
 
+    private static final int FOUND = 0;
     private static final int NOT_FOUND = -1;
     private static final int INITIAL_CAPACITY = 4;
     private static final int GROWTH_FACTOR = 4;
@@ -237,6 +238,22 @@ public class Roster {
                 return 1;
             }
         }
+        return 10;
+    }
+
+    public int setStudyAbroad(Roster rosterCollection, Student student) {
+        int index = rosterCollection.find(student);
+        if(index > 0) {
+            Student tempStudent = roster[index];
+            if(tempStudent instanceof International) {
+                ((International) tempStudent).setIsStudyAbroad();
+                return FOUND;
+            }
+        }
+        else {
+            return NOT_FOUND;
+        }
+
         return 10;
     }
 

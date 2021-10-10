@@ -3,7 +3,7 @@ public class NonResident extends Student
     public NonResident(String name, Major major, int creditHours) {
         super(name, major, creditHours);
     }
-/*
+
 
     @Override
     public void tuitionDue() {

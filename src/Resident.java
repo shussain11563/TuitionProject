@@ -18,13 +18,8 @@ public class Resident extends Student
     }
 
 
-    /*
+
     @Override
-
-    public void tuitionDue()
-    {
-    
-
     public void tuitionDue() {
         // Full-Time and Credits > 16
         if(this.getStatus() == FULL_TIME && this.getCreditHours() > CREDIT_HOURS_MAX) {
@@ -40,7 +35,6 @@ public class Resident extends Student
             this.setTuitionDue((Student.UNIVERSITY_FEE * PART_TIME_FEE_REDUCTION) +
                     (Student.RES_PART_TIME_TUITION_RATE * this.getCreditHours()));
         }
-
 
         /*
         //tuition + fee

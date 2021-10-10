@@ -10,15 +10,6 @@ public class Student {
     private double totalPayment;
     private Date lastPaymentDate;
     private boolean isStatus; //redundant ----> cant internationa;
-
-    private static final double CREDIT_HOURS_MAX = 16;
-    static final double ADDITIONAL_FEE = 2650;
-    public static final double UNIVERSITY_FEE = 3268;
-    static final double RES_FULL_TIME_TUITION = 12536;
-    static final double NON_RES_FULL_TIME_TUITION = 29737;
-    static final double RES_PART_TIME_TUITION_RATE = 404;
-    static final double NON_RES_PART_TIME_TUITION_RATE = 404;
-    static final double PART_TIME_FEE_REDUCTION = .8;
   
     public Profile getProfile()
     {
@@ -63,7 +54,6 @@ public class Student {
 
     public static final boolean FULL_TIME = true;
     public static final boolean PART_TIME = false;
-
     public static final double ADDITIONAL_FEE = 2650;
     public static final double UNIVERSITY_FEE = 3268;
     public static final double RES_FULL_TIME_TUITION = 12536;

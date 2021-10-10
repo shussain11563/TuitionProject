@@ -218,31 +218,6 @@ public class Roster {
         {
             this.roster[i].tuitionDue();
         }
-        /*
-            check if its resident, non resident, or international for base tuition payment
-            add university fee to all students
-            resident and non resident has no additional fees
-            international has additional fees
-
-            if credit > 16 then
-                resident adds $404 per credit
-                non resident adds $966 per credit
-
-            if part time student (< 12 credits)
-                resident adds $404 per credit
-                non resident adds $966 per credit
-                univesity fee is 80% of $3268
-
-             ___________
-             Remissions
-             NY - $4000 discount
-             CT - $5000 discount
-
-             If International = Student Abroad then no tuition
-                needs to pay the $3268 fee + international fee of 2650
-
-
-         */
     }
 
     public int payTuition(Roster rosterCollection, Student student, int paymentAmount, Date paymentDate) {

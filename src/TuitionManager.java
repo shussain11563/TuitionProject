@@ -270,8 +270,6 @@ public class TuitionManager {
 
         boolean isStudyAbroad = Boolean.parseBoolean(isStudyAbroadInfo);
 
-
-
     }
     public void runSetFinancialAidAmount(String rosterDetails, Roster rosterCollection) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");

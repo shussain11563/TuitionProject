@@ -121,7 +121,7 @@ public class Roster {
         System.out.println("* end of roster **");
     }
 
-
+    //complete, must reformat
     public void printByNames()
     {
         if(this.size == EMPTY)
@@ -138,11 +138,12 @@ public class Roster {
         {
             if(this.roster[i] != null)
             {
+                names[i] = this.roster[i].getProfile().getName();
                 //names[i] = this.roster[i].getGenre();
             }
         }
 
-        //insertionSort(names);
+        insertionSort(names);
 
         for(int i = 0; i < this.size; i++)
         {
@@ -152,7 +153,7 @@ public class Roster {
 
         System.out.println("* end of roster **");
     }
-
+    //complete, must reformat
     public void printByPaymentsMade()
     {
         if(this.size == EMPTY)
@@ -163,6 +164,17 @@ public class Roster {
 
         System.out.println("* list of students made payments ordered by payment date **");
 
+        Date paymentMades[] = new Date[this.roster.length];
+
+        for(int i = 0; i < this.roster.length; i++)
+        {
+            if(this.roster[i] != null && this.roster[i].getLastPaymentDate() != null)
+            {
+                paymentMades[i] = this.roster[i].getLastPaymentDate();
+            }
+        }
+
+        insertionSort(paymentMades);
 
         for(int i = 0; i < this.size; i++)
         {
@@ -172,7 +184,7 @@ public class Roster {
         System.out.println("* end of roster **");
     }
 
-
+    //complete, must reformat
     private <T extends Comparable<T>> void insertionSort(T[] arr) {
         for(int i = 0; i < this.roster.length; i++) {
             T key = arr[i];
@@ -197,9 +209,13 @@ public class Roster {
     }
 
 
-
-    private void calculateTuition()
+    //complete, must reformat
+    public void calculateTuition()
     {
+        for(int i = 0; i < this.size; i++)
+        {
+            this.roster[i].tuitionDue();
+        }
         /*
             check if its resident, non resident, or international for base tuition payment
             add university fee to all students
@@ -226,11 +242,6 @@ public class Roster {
 
          */
 
-
-        for(int i = 0; i < this.size; i++)
-        {
-            this.roster[i].tuitionDue();
-        }
     }
 
 

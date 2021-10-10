@@ -223,24 +223,42 @@ public class TuitionManager {
 
     public void runPayTuition(String rosterDetails, Roster rosterCollection) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
-        String name, major, paymentAmount, date = "";
-
+        String name, major, amount, date = "";
+        int paymentAmount = 0;
         stringTokenizer.nextToken();
         name = stringTokenizer.nextToken();
         major = stringTokenizer.nextToken();
-        paymentAmount = stringTokenizer.nextToken();
+        Major addMajor = Major.valueOf(major);
+
+        try {
+            amount = stringTokenizer.nextToken();
+
+        }
+        catch (NoSuchElementException ex1) {
+            System.out.println("Payment amount missing.");
+            return;
+        }
+
+        Student tempStudent = new Student(name,addMajor);
+        paymentAmount = Integer.parseInt(amount);
         date = stringTokenizer.nextToken();
+        Date paymentDate = new Date(date);
+        int holder = rosterCollection.payTuition(rosterCollection, tempStudent, paymentAmount, paymentDate);
 
-        //Check if payment due is greater than payment amount
-        /*
-
-        if(rosterCollection.remove())
-            System.out.println("Student removed from the roster.");
-        else
-            System.out.println("Student is not in the roster.");
-
-         */
+        if(holder == -2){
+            System.out.println("Amount is greater than amount due.");
+        }
+        else if(holder == -1){
+            System.out.println("Invalid amount.");
+        }
+        else if(holder == 0) {
+            System.out.println("Payment date invalid.");
+        }
+        else if(holder == 1){
+            System.out.println("Payment applied.");
+        }
     }
+
     public void runSetStudyAbroadStatus(String rosterDetails, Roster rosterCollection) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
         String name, major, isStudyAbroadInfo = "";
@@ -294,10 +312,8 @@ public class TuitionManager {
         AR,Jane Doe,CS,2
         AR,Jane Doe,CS,-10
         AR,Jane Doe,CS,hi
-
-
-
          */
+
         Roster xd = new Roster();
         String temp = "AR,Jane Doe,CS,hi";
         TuitionManager run = new TuitionManager();

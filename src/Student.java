@@ -112,17 +112,6 @@ public class Student {
                 this.lastPaymentDate.toString());
     }
 
-
-    /* redundant code, maybe not
-    public String callProfileGetName() {
-        return this.profile.getName();
-    }
-
-    public String callProfileGetMajor() {
-        return this.profile.getMajor();
-    }
-     */
-
     public void tuitionDue() {
     }
 }

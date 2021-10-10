@@ -7,6 +7,7 @@ public class Roster {
     private static final int GROWTH_FACTOR = 4;
     private static final int EMPTY = 0;
 
+
     public Roster()
     {
         this.roster = new Student[INITIAL_CAPACITY];
@@ -202,6 +203,26 @@ public class Roster {
         {
             this.roster[i].tuitionDue();
         }
+    }
+
+    public int payTuition(Roster rosterCollection, Student student, int paymentAmount, Date paymentDate) {
+        int index = rosterCollection.find(student);
+
+        if(index > 0) {
+            Student tempStudent = roster[index];
+            if(tempStudent.getTuitionDue() < paymentAmount)
+                return -2;
+            else if(paymentAmount < 0)
+                return -1;
+            else if(!paymentDate.isValid()) {
+                return 0;
+            }
+            else {
+                roster[index].setTuitionDue(student.getTuitionDue() - paymentAmount);
+                return 1;
+            }
+        }
+        return 10;
     }
 
 

@@ -10,6 +10,7 @@ public class NonResident extends Student
         //redundant
         super(name, major, creditHours);
     }
+/*
 
     @Override
     public void tuitionDue()

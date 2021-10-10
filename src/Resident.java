@@ -19,10 +19,11 @@ public class Resident extends Student
     }
 
 
+    /*
     @Override
     public void tuitionDue()
     {
-    /*
+    
 
         //tuition + fee
         if(this.getStatus() == FULL_TIME)

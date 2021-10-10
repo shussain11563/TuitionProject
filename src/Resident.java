@@ -2,19 +2,36 @@ public class Resident extends Student
 {
     private boolean alreadyAwarded;
     private static final double RESIDENTIAL_FINANCIAL_AID_LIMIT = 10000; // UPPER LIMIT
+    private double awardedFinancialAid;
 
     public Resident(String name, Major major, int creditHours) {
 
 
         super(name, major, creditHours); //change this
         this.alreadyAwarded = false;
+        this.awardedFinancialAid = 0;
     }
 
-    public void setFinancialAid() {
+    //constant for successful
+    //boolean?? or void
+    //add exception
+    public boolean setFinancialAid(double financialAid)
+    {
+        //validatation required....remove magic number
         if(alreadyAwarded == false)
         {
+            awardedFinancialAid = financialAid;
+            double newTuition = (getTuitionDue()-financialAid > 0) ? (getTuitionDue() - financialAid) : 0 ;
+            setTuitionDue(newTuition);
+
+            this.alreadyAwarded = true;
+
+            return true;
 
         }
+
+        return false;
+
     }
 
 

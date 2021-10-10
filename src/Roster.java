@@ -205,7 +205,7 @@ public class Roster {
     {
         for(int i = 0; i < this.size; i++)
         {
-
+            this.roster[i].tuitionDue();
         }
     }
 

@@ -11,6 +11,15 @@ public class Student {
     private Date lastPaymentDate;
     private boolean isStatus; //redundant ----> cant internationa;
 
+    private static final double CREDIT_HOURS_MAX = 16;
+    static final double ADDITIONAL_FEE = 2650;
+    public static final double UNIVERSITY_FEE = 3268;
+    static final double RES_FULL_TIME_TUITION = 12536;
+    static final double NON_RES_FULL_TIME_TUITION = 29737;
+    static final double RES_PART_TIME_TUITION_RATE = 404;
+    static final double NON_RES_PART_TIME_TUITION_RATE = 404;
+    static final double PART_TIME_FEE_REDUCTION = .8;
+  
     public Profile getProfile()
     {
         return this.profile;
@@ -54,6 +63,7 @@ public class Student {
 
     public static final boolean FULL_TIME = true;
     public static final boolean PART_TIME = false;
+
     public static final double ADDITIONAL_FEE = 2650;
     public static final double UNIVERSITY_FEE = 3268;
     public static final double RES_FULL_TIME_TUITION = 12536;
@@ -63,7 +73,6 @@ public class Student {
     public static final double PART_TIME_FEE_REDUCTION = .8;
     public static final double CREDIT_HOURS_MAX = 16;
     public static final double CREDIT_HOURS_MAX_PART_TIME = 12;
-
 
 
 
@@ -104,12 +113,10 @@ public class Student {
     @Override
     public String toString()
     {
-
+        String date = (this.getLastPaymentDate() != null) ? this.lastPaymentDate.toString() : "--/--/--";
         DecimalFormat df = new DecimalFormat("#,##0.00");
-        return String.format("%s:%s:%d credit hours:tuition due:%s:total payment:%s:last payment date: %s", this.profile.getName(), this.profile.getMajor(), this.creditHours,
-                df.format(this.tuitionDue),
-                df.format(this.totalPayment),
-                this.lastPaymentDate.toString());
+        return String.format("%s:%s:%d credit hours:tuition due:%s:total payment:%s:last payment date: %s", this.profile.getName(),
+                this.profile.getMajor(), this.creditHours, df.format(this.tuitionDue), df.format(this.totalPayment), date);
     }
 
     public void tuitionDue() {

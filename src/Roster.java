@@ -122,7 +122,7 @@ public class Roster {
         System.out.println("* end of roster **");
     }
 
-
+    //complete, must reformat
     public void printByNames()
     {
         if(this.size == EMPTY)
@@ -139,11 +139,12 @@ public class Roster {
         {
             if(this.roster[i] != null)
             {
+                names[i] = this.roster[i].getProfile().getName();
                 //names[i] = this.roster[i].getGenre();
             }
         }
 
-        //insertionSort(names);
+        insertionSort(names);
 
         for(int i = 0; i < this.size; i++)
         {
@@ -153,7 +154,7 @@ public class Roster {
 
         System.out.println("* end of roster **");
     }
-
+    //complete, must reformat
     public void printByPaymentsMade()
     {
         if(this.size == EMPTY)
@@ -164,6 +165,17 @@ public class Roster {
 
         System.out.println("* list of students made payments ordered by payment date **");
 
+        Date paymentMades[] = new Date[this.roster.length];
+
+        for(int i = 0; i < this.roster.length; i++)
+        {
+            if(this.roster[i] != null && this.roster[i].getLastPaymentDate() != null)
+            {
+                paymentMades[i] = this.roster[i].getLastPaymentDate();
+            }
+        }
+
+        insertionSort(paymentMades);
 
         for(int i = 0; i < this.size; i++)
         {
@@ -173,7 +185,7 @@ public class Roster {
         System.out.println("* end of roster **");
     }
 
-
+    //complete, must reformat
     private <T extends Comparable<T>> void insertionSort(T[] arr) {
         for(int i = 0; i < this.roster.length; i++) {
             T key = arr[i];
@@ -197,12 +209,40 @@ public class Roster {
         }
     }
 
+
+
+    //complete, must reformat
     public void calculateTuition()
     {
         for(int i = 0; i < this.size; i++)
         {
             this.roster[i].tuitionDue();
         }
+        /*
+            check if its resident, non resident, or international for base tuition payment
+            add university fee to all students
+            resident and non resident has no additional fees
+            international has additional fees
+
+            if credit > 16 then
+                resident adds $404 per credit
+                non resident adds $966 per credit
+
+            if part time student (< 12 credits)
+                resident adds $404 per credit
+                non resident adds $966 per credit
+                univesity fee is 80% of $3268
+
+             ___________
+             Remissions
+             NY - $4000 discount
+             CT - $5000 discount
+
+             If International = Student Abroad then no tuition
+                needs to pay the $3268 fee + international fee of 2650
+
+
+         */
     }
 
     public int payTuition(Roster rosterCollection, Student student, int paymentAmount, Date paymentDate) {

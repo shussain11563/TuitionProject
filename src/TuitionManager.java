@@ -50,7 +50,7 @@ public class TuitionManager {
         else if(commandLineInput.equals("PN"))
             rosterCollection.printByNames();
         else if(commandLineInput.equals("PT"))
-            rosterCollection.printByPaymentsDate();
+            rosterCollection.printByPaymentsMadeByPaymentDate();
         else if(commandLineInput.charAt(0) == 'A')
             runAddStudent(commandLineInput, rosterCollection);
         else if(commandLineInput.charAt(0) == 'R')

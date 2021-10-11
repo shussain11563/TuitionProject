@@ -19,29 +19,15 @@ public class Roster {
     {
         for(int i = 0; i < this.size; i++)
         {
-            //use .equals??
-            /*
-            if()
+            //change for readabilitiy
+            if(this.roster[i] != null && this.roster[i].getProfile().getName().equals(student.getProfile().getName()) &&
+                    this.roster[i].getProfile().getMajor().equals(student.getProfile().getMajor()))
             {
                 return i;
             }
-
-             */
         }
 
         return NOT_FOUND;
-        /*
-        for(int i = 0; i < this.size; i++) {
-
-            if(this.roster[i] != null && this.roster[i].callProfileGetName().equals(student.callProfileGetName())
-                    && this.roster[i].callProfileGetMajor().equals(student.callProfileGetMajor())) {
-                return i;
-            }
-        }
-        return -1;
-
-         */
-
     }
 
     //Complete, must reformat
@@ -72,7 +58,8 @@ public class Roster {
     //complete, must needed
     public boolean add(Student student)
     {
-        if(find(student) == NOT_FOUND)
+
+        if(find(student) != NOT_FOUND)
         {
             return false;
         }
@@ -211,6 +198,30 @@ public class Roster {
     }
 
 
+    //put in addFinancialAid
+    public boolean addFinancialAid(Student student, double financialAidAmount)
+    {
+        //add validation
+        int indexOfStudent = find(student);
+
+        if(indexOfStudent == NOT_FOUND)
+        {
+            return false; //return FALSE
+        }
+
+        if(student instanceof Resident)
+        {
+            Resident residentStudent = (Resident) student;
+            //boolean successfullySetFinAid = residentStudent.setFinancialAid(financialAidAmount);
+            return residentStudent.setFinancialAid(financialAidAmount); //checks if awarded once
+        }
+        else
+        {
+            return false;
+            //not resident
+        }
+    }
+
 
 
     //complete, must reformat
@@ -222,10 +233,11 @@ public class Roster {
         }
     }
 
-    public int payTuition(Roster rosterCollection, Student student, int paymentAmount, Date paymentDate) {
-        int index = rosterCollection.find(student);
+    public int payTuition(Student student, int paymentAmount, Date paymentDate) {
+        int index = find(student);
 
-        if(index > 0) {
+        if(index > 0)
+        {
             Student tempStudent = roster[index];
             if(tempStudent.getTuitionDue() < paymentAmount)
                 return -2;
@@ -242,20 +254,26 @@ public class Roster {
         return 10;
     }
 
-    public int setStudyAbroad(Roster rosterCollection, Student student) {
-        int index = rosterCollection.find(student);
-        if(index > 0) {
+    //BOOLEAN
+    public int setStudyAbroad(Student student) {
+        int index = find(student);
+        if(index != NOT_FOUND)
+        {
             Student tempStudent = roster[index];
-            if(tempStudent instanceof International) {
+            if(tempStudent instanceof International)
+            {
                 ((International) tempStudent).setIsStudyAbroad();
                 return FOUND;
+            }
+            else{
+                return NOT_FOUND;
             }
         }
         else {
             return NOT_FOUND;
         }
 
-        return 10;
+
     }
 
 

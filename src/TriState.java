@@ -17,14 +17,15 @@ public class TriState extends NonResident
         State nyState = State.NY;
         State ctState = State.CT;
 
-        if(state.equals(nyState)) {
+        if(state.equals(nyState))
+        {
             if(this.getStatus() == FULL_TIME && this.getCreditHours() > CREDIT_HOURS_MAX) {
                 this.setTuitionDue((Student.NON_RES_FULL_TIME_TUITION - NEW_YORK_TUITION_DISCOUNT) + Student.UNIVERSITY_FEE +
                         Student.NON_RES_PART_TIME_TUITION_RATE * (this.getCreditHours()  - CREDIT_HOURS_MAX));
             }
             // Full-Time and Credits Between 12 and 16
             else if(this.getStatus() == FULL_TIME) {
-                this.setTuitionDue(Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE);
+                this.setTuitionDue(Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE - NEW_YORK_TUITION_DISCOUNT);
             }
             // Part-Time
             else if(this.getStatus() == PART_TIME) {
@@ -32,14 +33,17 @@ public class TriState extends NonResident
                         (Student.NON_RES_PART_TIME_TUITION_RATE * this.getCreditHours()));
             }
         }
-        else if(state.equals(ctState)) {
+        else if(state.equals(ctState))
+        {
+
             if(this.getStatus() == FULL_TIME && this.getCreditHours() > CREDIT_HOURS_MAX) {
                 this.setTuitionDue((Student.NON_RES_FULL_TIME_TUITION - CONNECTICUT_TUITION_DISCOUNT) + Student.UNIVERSITY_FEE +
                         Student.NON_RES_PART_TIME_TUITION_RATE * (this.getCreditHours()  - CREDIT_HOURS_MAX));
             }
             // Full-Time and Credits Between 12 and 16
             else if(this.getStatus() == FULL_TIME) {
-                this.setTuitionDue(Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE);
+                this.setTuitionDue(Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE - CONNECTICUT_TUITION_DISCOUNT);
+                this.setTuitionDue(Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE - CONNECTICUT_TUITION_DISCOUNT);
             }
             // Part-Time
             else if(this.getStatus() == PART_TIME) {

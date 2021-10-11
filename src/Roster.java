@@ -275,6 +275,7 @@ public class Roster {
     */
 
     //BOOLEAN
+    /*
     public int setStudyAbroad(Student student) {
         int index = find(student);
         if(index != NOT_FOUND)
@@ -294,7 +295,10 @@ public class Roster {
         }
 
 
+
     }
+
+*/
 
 
 

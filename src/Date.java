@@ -63,7 +63,6 @@ public class Date implements Comparable<Date>
             return false;
         }
         else if(this.year == currentDate.get(Calendar.YEAR) && this.month > (currentDate.get(Calendar.MONTH))) {
-
             return false;
         }
 //      else if(this.month <= (currentDate.get(Calendar.MONTH) + 1)) {
@@ -157,7 +156,7 @@ public class Date implements Comparable<Date>
     public static void main(String[] args) {
         // test case #1, a date with a year before 1980 should be invalid
         // fail
-        Date date = new Date("12/1/2021");
+        Date date = new Date("9/1/2021");
         System.out.println("Test Case #1");
         if(date.isValid())
             System.out.println("Pass.");

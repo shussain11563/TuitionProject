@@ -1,6 +1,6 @@
 /**
- * TuitionManager is a user interface class that handles I/O with Collection
- * and Album. Contains an initialized Collection ready to manipulate Album objects.
+ * TuitionManager is a user interface class that handles I/O with Roster
+ * and and Students. Contains an initialized Roster Collection ready to manipulate Student objects.
  * @author Sharia Hussain, David Lam
  */
 
@@ -10,18 +10,16 @@ import java.util.StringTokenizer;
 
 public class TuitionManager {
     /**
-     * Method that is called by the RunProject1 driver and starts the Collection Manager.
-     * Initializes Collection object and takes input from console to perform actions.
+     * Method that is called by the RunProject2 driver and starts the Tuition Collection Manager.
+     * Initializes Roster Collection object and takes input from console to perform actions.
      */
     public void run() {
         Scanner scanner = new Scanner(System.in);
         Boolean runProject = false;
         Roster rosterCollection = new Roster();
 
-
         while(scanner.hasNextLine()) {
-            if(runProject == false)
-            {
+            if(runProject == false) {
                 System.out.println("Tuition Manager starts running.");
                 runProject = true;
             }
@@ -36,15 +34,17 @@ public class TuitionManager {
                 break;
             }
             else
-                runAlbumCommands(commandLineInput, rosterCollection);
+                runTuitionCommands(commandLineInput, rosterCollection);
         }
     }
 
     /**
-     * Helper method that runs the album commands and checks the commandLineInput
-     * and matches the command with the input
+     * Helper method that runs the Tuition commands and checks the commandLineInput
+     * and matches the command with the input.
+     * @param commandLineInput the string that holds the Input from the command line
+     * @param rosterCollection the roster collection that holds the list of students
      */
-    public void runAlbumCommands(String commandLineInput, Roster rosterCollection) {
+    public void runTuitionCommands(String commandLineInput, Roster rosterCollection) {
         if(commandLineInput.equals("P"))
             rosterCollection.print();
         else if(commandLineInput.equals("PN"))
@@ -68,9 +68,10 @@ public class TuitionManager {
     }
 
     /**
-     * Method that tokenizes the album string and runs the add method in the Collection Class
-     * The method also checks the genre with the enum values and also validates the date in the
-     * given string.
+     * Method that tokenizes the Roster Details string and runs a series of methods that checks the input.
+     * The method calls a method that processes the correct info that is to be added to the collection.
+     * @param rosterDetails the string that holds the Input from the command line
+     * @param rosterCollection the roster collection that holds the list of students
      */
     public void runAddStudent(String rosterDetails, Roster rosterCollection) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
@@ -106,6 +107,16 @@ public class TuitionManager {
         runProcessAddStudent(rosterCollection, addType, name, addMajor, intCredits, additionalInfo);
     }
 
+    /**
+     * Method that instantiates a student based on the type of Student.
+     * Then, the method finalizes the new object by calling a new method to add to Roster.
+     * @param rosterCollection the roster collection that holds the list of students
+     * @param addType the type of student to be added to the roster
+     * @param name the name of the student
+     * @param addMajor the major of the student
+     * @param intCredits the number of credits the student is taking
+     * @param additionalInfo additional info for international and tristate students
+     */
     private void runProcessAddStudent(Roster rosterCollection, String addType, String name, Major addMajor, int intCredits, String additionalInfo) {
         if(addType.equals("AR")) {
             Student newResidentStudent = new Resident(name, addMajor, intCredits);
@@ -126,10 +137,6 @@ public class TuitionManager {
             {
                 System.out.println("Missing data in command line.");
                 return;
-                //Missing data in command line.
-                //ADD TRY CATCH OR SOMETHING
-                //ADD AN EXCEPTION FOR THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
             }
             else
             {
@@ -149,7 +156,12 @@ public class TuitionManager {
             }
         }
     }
-
+    /**
+     * Method that calls the add method in Roster Collection.
+     * Then, the method checks if the student has been added to the collection or not.
+     * @param rosterCollection the roster collection that holds the list of students
+     * @param student the type of student to be added to the roster
+     */
     private void finalizeAddStudent(Roster rosterCollection, Student student) {
         if(rosterCollection.add(student))
             System.out.println("Student added.");
@@ -158,6 +170,10 @@ public class TuitionManager {
         }
     }
 
+    /**
+     * Method that checks for bad input within the Input for Add.
+     * @param rosterDetails the string that holds the Input from the command line
+     */
     private boolean checkAddStudent(String rosterDetails) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
         String addType, name, major, originalMajorParameter, credits = "";
@@ -194,10 +210,13 @@ public class TuitionManager {
             System.out.println("'" + originalMajorParameter + "' is not a valid major.");
             return false;
         }
-
         return true;
     }
 
+    /**
+     * Method that checks the bounds for the Min/Max of the credit limits.
+     * @param intCredits the number of credits the student is taking
+     */
     private boolean checkMinMaxCredits(int intCredits) {
         if(intCredits < 0) {
             System.out.println("Credit hours cannot be negative.");
@@ -215,7 +234,10 @@ public class TuitionManager {
     }
 
     /**
-     * Method that tokenizes the album string and runs the remove method in the Collection Class.
+     * Method that tokenizes the Roster Details string and removes the student from the roster.
+     * The method also checks if the user is not in the roster before removing.
+     * @param rosterDetails the string that holds the Input from the command line
+     * @param rosterCollection the roster collection that holds the list of students
      */
     public void runRemoveStudent(String rosterDetails, Roster rosterCollection) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
@@ -234,11 +256,23 @@ public class TuitionManager {
             System.out.println("Student is not in the roster.");
     }
 
+    /**
+     * Method that runs the command in Roster Collection to calculate the tuition
+     * for all students in the roster.
+     * @param rosterCollection the roster collection that holds the list of students
+     */
     public void runCalculateTuitionDues(Roster rosterCollection) {
         rosterCollection.calculateTuition();
         System.out.println("Calculation completed.");
     }
 
+    /**
+     * Method that tokenizes the Roster Details string and checks for correct input.
+     * Then the method calls the payTuition method in Roster which then applies the payment
+     * for a given students tuition.
+     * @param rosterDetails the string that holds the Input from the command line
+     * @param rosterCollection the roster collection that holds the list of students
+     */
     public void runPayTuition(String rosterDetails, Roster rosterCollection) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
         String name, major, amount, date = "";
@@ -287,6 +321,13 @@ public class TuitionManager {
         }
     }
 
+    /**
+     * Method that tokenizes the Roster Details string and checks for correct input.
+     * Then the method calls the setIsStudyAbroad to set an International Student
+     * to study abroad.
+     * @param rosterDetails the string that holds the Input from the command line
+     * @param rosterCollection the roster collection that holds the list of students
+     */
     public void runSetStudyAbroadStatus(String rosterDetails, Roster rosterCollection) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
         String name, major = "";
@@ -306,9 +347,14 @@ public class TuitionManager {
         else {
             System.out.println("Couldn't find the international student.");
         }
-
-
     }
+
+    /**
+     * Method that tokenizes the Roster Details string and checks for correct input.
+     * Then the method calls the setFinancialAid to set the amount of Financial Aid given to a resident student.
+     * @param rosterDetails the string that holds the Input from the command line
+     * @param rosterCollection the roster collection that holds the list of students
+     */
     public void runSetFinancialAidAmount(String rosterDetails, Roster rosterCollection) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
         String name, major, amount = "";
@@ -321,7 +367,6 @@ public class TuitionManager {
 
         try {
             amount = stringTokenizer.nextToken();
-
         }
         catch (NoSuchElementException ex1) {
             System.out.println("Missing the amount.");
@@ -345,34 +390,16 @@ public class TuitionManager {
                     }
                     else {
                         System.out.println("Not a resident student.");
-
                     }
                 }
                 else {
                     System.out.println("Parttime student doesn't qualify for the award.");
                     return;
                 }
-
             }
         }
         else {
             System.out.println("Student not in the roster.");
         }
-    }
-    public static void main(String args[]) {
-
-        /*
-        AR,Jane Doe,cS,10
-        AR,Jane Doe
-        AR,Jane Doe,CS
-        AR,Jane Doe,CS,2
-        AR,Jane Doe,CS,-10
-        AR,Jane Doe,CS,hi
-         */
-
-        Roster xd = new Roster();
-        String temp = "AR,Jane Doe,CS,hi";
-        TuitionManager run = new TuitionManager();
-        run.runAddStudent(temp, xd);
     }
 }

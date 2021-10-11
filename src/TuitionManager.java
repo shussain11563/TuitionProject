@@ -50,7 +50,7 @@ public class TuitionManager {
         else if(commandLineInput.equals("PN"))
             rosterCollection.printByNames();
         else if(commandLineInput.equals("PT"))
-            rosterCollection.printByPaymentsMade();
+            rosterCollection.printByPaymentsDate();
         else if(commandLineInput.charAt(0) == 'A')
             runAddStudent(commandLineInput, rosterCollection);
         else if(commandLineInput.charAt(0) == 'R')
@@ -269,18 +269,24 @@ public class TuitionManager {
         catch (NoSuchElementException ex1) {
         }
 
-        int holder = rosterCollection.payTuition(tempStudent, paymentAmount, paymentDate);
-
-        if(holder == -2){
+        Student outputStudent = rosterCollection.getStudent(tempStudent);
+        if(outputStudent.getTuitionDue() < paymentAmount) {
             System.out.println("Amount is greater than amount due.");
+            return;
         }
-        else if(holder == -1){
+        else if(paymentAmount <= 0) {
             System.out.println("Invalid amount.");
+            return;
+
         }
-        else if(holder == 0) {
+        else if(!paymentDate.isValid() ) {
             System.out.println("Payment date invalid.");
+            return;
         }
-        else if(holder == 1){
+
+
+        if(outputStudent != null) {
+            outputStudent.payTuiton(paymentAmount, paymentDate);
             System.out.println("Payment applied.");
         }
     }
@@ -295,14 +301,14 @@ public class TuitionManager {
         Major addMajor = Major.valueOf(major);
 
         Student tempStudent = new Student(name,addMajor);
-        int holder = rosterCollection.setStudyAbroad(tempStudent);
-
-        if(holder == -1){
-            System.out.println("Couldn't find the international student.");
-        }
-        else if(holder == 0){
-            System.out.println("Tuition updated.");
-        }
+//        int holder = rosterCollection.setStudyAbroad(tempStudent);
+//
+//        if(holder == -1){
+//            System.out.println("Couldn't find the international student.");
+//        }
+//        else if(holder == 0){
+//            System.out.println("Tuition updated.");
+//        }
 
     }
     public void runSetFinancialAidAmount(String rosterDetails, Roster rosterCollection) {

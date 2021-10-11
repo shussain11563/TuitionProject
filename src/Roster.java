@@ -161,7 +161,7 @@ public class Roster {
         System.out.println("* end of roster **");
     }
     //complete, must reformat
-    public void printByPaymentsMade()
+    public void printByPaymentsDate()
     {
         if(this.size == EMPTY)
         {

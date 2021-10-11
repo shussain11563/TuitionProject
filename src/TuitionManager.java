@@ -155,10 +155,6 @@ public class TuitionManager {
 
         addType = stringTokenizer.nextToken();
 
-        major = stringTokenizer.nextToken();
-        originalMajorParameter = major;
-        major = major.toUpperCase();
-
         try {
             name = stringTokenizer.nextToken();
         }

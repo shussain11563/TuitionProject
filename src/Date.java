@@ -20,7 +20,7 @@ public class Date implements Comparable<Date>
     public static final int CENTENNIAL = 100;
     /** Constants used to calculate if year is a leap year*/
     public static final int QUATERCENTENNIAL = 400;
-    
+
     /**
      * Constructs and initializes a Date based on a textual representation of "MM/DD/YYYY".
      */

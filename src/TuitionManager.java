@@ -53,7 +53,7 @@ public class TuitionManager {
             rosterCollection.printByPaymentsMade();
         else if(commandLineInput.charAt(0) == 'A')
             runAddStudent(commandLineInput, rosterCollection);
-        else if(commandLineInput.charAt(0) == 'D')
+        else if(commandLineInput.charAt(0) == 'R')
             runRemoveStudent(commandLineInput, rosterCollection);
         else if(commandLineInput.charAt(0) == 'C')
             runCalculateTuitionDues(rosterCollection);
@@ -90,7 +90,7 @@ public class TuitionManager {
             intCredits = Integer.parseInt(credits);
         }
         catch (NumberFormatException ex) {
-            System.out.println("Invalid Credit Hours.");
+            System.out.println("Invalid credit hours.");
             return;
         }
         if(!checkMinMaxCredits(intCredits))
@@ -116,21 +116,30 @@ public class TuitionManager {
             finalizeAddStudent(rosterCollection, newNonResidentStudent);
         }
         else if(addType.equals("AT")) {
-            additionalInfo.toUpperCase();
-
+            additionalInfo = additionalInfo.toUpperCase();
             if(additionalInfo.equals("NY") || additionalInfo.equals("CT")) {
                 State addState = State.valueOf(additionalInfo);
                 Student newTriStateStudent = new TriState(name, addMajor, intCredits, addState);
                 finalizeAddStudent(rosterCollection, newTriStateStudent);
             }
-            else {
+            else if(additionalInfo.equals(""))
+            {
+                System.out.println("Missing data in command line.");
+                return;
+                //Missing data in command line.
+                //ADD TRY CATCH OR SOMETHING
+                //ADD AN EXCEPTION FOR THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+            }
+            else
+            {
                 System.out.println("Not part of the tri-state area.");
                 return;
             }
         }
         else if(addType.equals("AI")) {
             if(intCredits < 12) {
-                System.out.println("Internal students must enroll at least 12 credits.");
+                System.out.println("International students must enroll at least 12 credits.");
                 return;
             }
             else {
@@ -177,7 +186,7 @@ public class TuitionManager {
             credits = stringTokenizer.nextToken();
         }
         catch (NoSuchElementException ex1) {
-            System.out.println("Credits hours missing.");
+            System.out.println("Credit hours missing.");
             return false;
         }
 
@@ -214,7 +223,7 @@ public class TuitionManager {
 
         stringTokenizer.nextToken();
         name = stringTokenizer.nextToken();
-        major = stringTokenizer.nextToken();
+        major = stringTokenizer.nextToken().toUpperCase();
         Major addMajor = Major.valueOf(major);
 
         Student tempStudent = new Student(name,addMajor);

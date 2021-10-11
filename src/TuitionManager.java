@@ -251,7 +251,6 @@ public class TuitionManager {
 
         try {
             amount = stringTokenizer.nextToken();
-
         }
         catch (NoSuchElementException ex1) {
             System.out.println("Payment amount missing.");
@@ -264,7 +263,6 @@ public class TuitionManager {
         try {
             date = stringTokenizer.nextToken();
             paymentDate = new Date(date);
-
         }
         catch (NoSuchElementException ex1) {
         }
@@ -277,13 +275,11 @@ public class TuitionManager {
         else if(paymentAmount <= 0) {
             System.out.println("Invalid amount.");
             return;
-
         }
         else if(!paymentDate.isValid() ) {
             System.out.println("Payment date invalid.");
             return;
         }
-
 
         if(outputStudent != null) {
             outputStudent.payTuiton(paymentAmount, paymentDate);
@@ -297,18 +293,20 @@ public class TuitionManager {
 
         stringTokenizer.nextToken();
         name = stringTokenizer.nextToken();
-        major = stringTokenizer.nextToken();
+        major = stringTokenizer.nextToken().toUpperCase();
         Major addMajor = Major.valueOf(major);
 
         Student tempStudent = new Student(name,addMajor);
-//        int holder = rosterCollection.setStudyAbroad(tempStudent);
-//
-//        if(holder == -1){
-//            System.out.println("Couldn't find the international student.");
-//        }
-//        else if(holder == 0){
-//            System.out.println("Tuition updated.");
-//        }
+
+        Student outputStudent = rosterCollection.getStudent(tempStudent);
+        if(outputStudent instanceof International) {
+            ((International) outputStudent).setIsStudyAbroad();
+            System.out.println("Tuition updated.");
+        }
+        else {
+            System.out.println("Couldn't find the international student.");
+        }
+
 
     }
     public void runSetFinancialAidAmount(String rosterDetails, Roster rosterCollection) {

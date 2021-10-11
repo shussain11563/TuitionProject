@@ -108,7 +108,7 @@ public class Student {
 
 
         //add validation
-        this.totalPayment += paidTuition;
+
         setTotalPayment(getTotalPayment() + paidTuition);
         setTuitionDue(getTuitionDue() - paidTuition);
         this.lastPaymentDate = lastPaymentDate;

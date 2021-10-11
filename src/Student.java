@@ -98,6 +98,21 @@ public class Student {
         this.profile = new Profile(name, major);
     }
 
+    public void setTotalPayment(double totalPayment)
+    {
+        this.totalPayment = totalPayment;
+    }
+
+    public void payTuiton(double paidTuition, Date lastPaymentDate)
+    {
+
+        //add validation
+        this.totalPayment += paidTuition;
+        setTotalPayment(getTotalPayment() + paidTuition);
+        setTuitionDue(getTuitionDue() - paidTuition);
+        this.lastPaymentDate = lastPaymentDate;
+    }
+
 
 
     @Override

@@ -318,7 +318,8 @@ public class TuitionManager {
 
         stringTokenizer.nextToken();
         name = stringTokenizer.nextToken();
-        major = stringTokenizer.nextToken();
+        major = stringTokenizer.nextToken().toUpperCase();
+        Major addMajor = Major.valueOf(major);
 
         try {
             amount = stringTokenizer.nextToken();
@@ -328,14 +329,38 @@ public class TuitionManager {
             System.out.println("Missing the amount.");
             return;
         }
+        Student tempStudent = new Student(name,addMajor);
+        Student outputStudent = rosterCollection.getStudent(tempStudent);
 
-        financialAidAmount = Double.parseDouble(amount);
+
+        if(outputStudent != null) {
+            financialAidAmount = Double.parseDouble(amount);
 
 
-        if(financialAidAmount < 0 || financialAidAmount > 10000)
-            System.out.println("Invalid amount.");
+            if(financialAidAmount < 0 || financialAidAmount > 10000)
+                System.out.println("Invalid amount.");
+            else {
+                if(outputStudent.getCreditHours() >= 12) {
+                    if(outputStudent instanceof Resident) {
+                        if(((Resident) outputStudent).setFinancialAid(financialAidAmount) == true)
+                            System.out.println("Tuition updated.");
+                        else
+                            System.out.println("Awarded once already.");
+                    }
+                    else {
+                        System.out.println("Not a resident student.");
+
+                    }
+                }
+                else {
+                    System.out.println("Parttime student doesn't qualify for the award.");
+                    return;
+                }
+
+            }
+        }
         else {
-
+            System.out.println("Student not in the roster.");
         }
     }
     public static void main(String args[]) {

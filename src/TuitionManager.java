@@ -50,7 +50,7 @@ public class TuitionManager {
         else if(commandLineInput.equals("PN"))
             rosterCollection.printByNames();
         else if(commandLineInput.equals("PT"))
-            rosterCollection.printByPaymentsMade();
+            rosterCollection.printByPaymentsMadeByPaymentDate();
         else if(commandLineInput.charAt(0) == 'A')
             runAddStudent(commandLineInput, rosterCollection);
         else if(commandLineInput.charAt(0) == 'R')
@@ -242,10 +242,11 @@ public class TuitionManager {
     public void runPayTuition(String rosterDetails, Roster rosterCollection) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
         String name, major, amount, date = "";
-        int paymentAmount = 0;
+        Date paymentDate = null;
+        double paymentAmount = 0;
         stringTokenizer.nextToken();
         name = stringTokenizer.nextToken();
-        major = stringTokenizer.nextToken();
+        major = stringTokenizer.nextToken().toUpperCase();
         Major addMajor = Major.valueOf(major);
 
         try {
@@ -258,21 +259,34 @@ public class TuitionManager {
         }
 
         Student tempStudent = new Student(name,addMajor);
-        paymentAmount = Integer.parseInt(amount);
-        date = stringTokenizer.nextToken();
-        Date paymentDate = new Date(date);
-        int holder = rosterCollection.payTuition(tempStudent, paymentAmount, paymentDate);
+        paymentAmount = Double.parseDouble(amount);
 
-        if(holder == -2){
+        try {
+            date = stringTokenizer.nextToken();
+            paymentDate = new Date(date);
+
+        }
+        catch (NoSuchElementException ex1) {
+        }
+
+        Student outputStudent = rosterCollection.getStudent(tempStudent);
+        if(outputStudent.getTuitionDue() < paymentAmount) {
             System.out.println("Amount is greater than amount due.");
+            return;
         }
-        else if(holder == -1){
+        else if(paymentAmount <= 0) {
             System.out.println("Invalid amount.");
+            return;
+
         }
-        else if(holder == 0) {
+        else if(!paymentDate.isValid() ) {
             System.out.println("Payment date invalid.");
+            return;
         }
-        else if(holder == 1){
+
+
+        if(outputStudent != null) {
+            outputStudent.payTuiton(paymentAmount, paymentDate);
             System.out.println("Payment applied.");
         }
     }
@@ -287,14 +301,14 @@ public class TuitionManager {
         Major addMajor = Major.valueOf(major);
 
         Student tempStudent = new Student(name,addMajor);
-        int holder = rosterCollection.setStudyAbroad(tempStudent);
-
-        if(holder == -1){
-            System.out.println("Couldn't find the international student.");
-        }
-        else if(holder == 0){
-            System.out.println("Tuition updated.");
-        }
+//        int holder = rosterCollection.setStudyAbroad(tempStudent);
+//
+//        if(holder == -1){
+//            System.out.println("Couldn't find the international student.");
+//        }
+//        else if(holder == 0){
+//            System.out.println("Tuition updated.");
+//        }
 
     }
     public void runSetFinancialAidAmount(String rosterDetails, Roster rosterCollection) {

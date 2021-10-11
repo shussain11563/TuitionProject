@@ -106,6 +106,7 @@ public class Student {
     public void payTuiton(double paidTuition, Date lastPaymentDate)
     {
 
+
         //add validation
         this.totalPayment += paidTuition;
         setTotalPayment(getTotalPayment() + paidTuition);

@@ -189,7 +189,7 @@ public class Roster {
         System.out.println("* end of roster **");
     }
     //complete, must reformat
-    public void printByPaymentsMade()
+    public void printByPaymentsMadeByPaymentDate()
     {
         if(this.size == EMPTY)
         {
@@ -283,17 +283,23 @@ public class Roster {
     public int payTuition(Student student, int paymentAmount, Date paymentDate) {
         int index = find(student);
 
-        if(index > 0)
+        if(index >= 0)
         {
             Student tempStudent = roster[index];
-            if(tempStudent.getTuitionDue() < paymentAmount)
+            if(tempStudent.getTuitionDue() < paymentAmount) {
                 return -2;
-            else if(paymentAmount < 0)
+
+            }
+            else if(paymentAmount <= 0) {
                 return -1;
-            else if(!paymentDate.isValid()) {
+            }
+            else if(!paymentDate.isValid() ) {
                 return 0;
             }
             else {
+                System.out.println(student.getTuitionDue());
+                System.out.println(student.getTuitionDue() - paymentAmount);
+
                 roster[index].setTuitionDue(student.getTuitionDue() - paymentAmount);
                 return 1;
             }

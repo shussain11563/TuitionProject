@@ -222,6 +222,18 @@ public class Roster {
         System.out.println("* end of roster **");
     }
 
+    private <T extends Comparable<T>> int safeNullCompareTo(T first, T second)
+    {
+        if(second == null)
+        {
+            return 1;
+        }
+        else
+        {
+            return first.compareTo(second);
+        }
+
+    }
     //complete, must reformat
     private <T extends Comparable<T>> void insertionSort(T[] arr) {
         for(int i = 0; i < this.roster.length; i++) {
@@ -234,13 +246,19 @@ public class Roster {
             //might require instance off?
             int j = i-1;
 
-            while(j>=0 && arr[j]!=null && arr[j].compareTo(key)>0)
+            //if arr[j].compareTo causes error, then continue
+
+
+            //while(j>=0 && arr[j]!=null && arr[j].compareTo(key)>0)
             //while(j>=0 && arr[j]!=null && key!=null && arr[j].compareTo(key)>0)
+            //while(j>=0 && arr[j]!=null && key!=null && arr[j].compareTo(key)>0)
+            while(j>=0 && arr[j]!=null && safeNullCompareTo(arr[j], key) > 0)
             {
 
                 arr[j + 1] = arr[j];
                 this.roster[j + 1] = this.roster[j];
                 j = j - 1;
+
             }
 
             arr[j + 1] = key;
@@ -250,6 +268,7 @@ public class Roster {
 
 
     //put in addFinancialAid
+    /*
     public boolean addFinancialAid(Student student, double financialAidAmount)
     {
         //add validation
@@ -272,7 +291,7 @@ public class Roster {
             //not resident
         }
     }
-
+*/
 
 
     //complete, must reformat

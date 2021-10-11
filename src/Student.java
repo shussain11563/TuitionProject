@@ -1,12 +1,19 @@
+/**
+ * Student is the parent class of all students that are added to the Roster.
+ * Contains methods for getting, setting, manipulating, paying tuition for students
+ * @author Sharia Hussain, David Lam
+ */
+
 import java.text.DecimalFormat;
 
 public class Student {
     private Profile profile;
-    private int creditHours;  //maybe double
+    private int creditHours;
     private double tuitionDue;
     private double totalPayment;
     private Date lastPaymentDate;
-    private boolean isStatus; //redundant ----> cant internationa;
+    private boolean isStatus;
+
     /**
      * Retrieves the profile of the student
      * @return the profile of the student

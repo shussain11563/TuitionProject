@@ -105,7 +105,10 @@ public class Roster {
 
         System.out.println("* list of students in the roster **");
 
-
+        for(int i = 0; i < this.size; i++)
+        {
+            System.out.println(this.roster[i].toString());
+        }
 
         System.out.println("* end of roster **");
     }

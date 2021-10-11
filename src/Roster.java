@@ -6,7 +6,8 @@
  */
 public class Roster {
     private Student[] roster;
-    private int size; //keep track of the number of students in the roster
+    private int size;
+
 
     private static final int FOUND = 0;
     private static final int NOT_FOUND = -1;
@@ -27,7 +28,7 @@ public class Roster {
     /**
      * Finds a student within the Student Roster.
      * @param student the student to find within the Student Roster.
-     * @return position of student in rosters array, returns NOT_FOUND (-1) if not found.
+     * @return index of student in rosters array, returns NOT_FOUND (-1) if not found.
      */
     private int find(Student student)
     {
@@ -117,13 +118,16 @@ public class Roster {
         return true;
     }
 
-
+    /**
+     * Removes a specified Student from the roster array.
+     * @param student the student to remove from the roster
+     * @return true if removing an student from the roster collection is successful, returns false otherwise.
+     */
     public boolean remove(Student student)
     {
         int indexOfStudent = find(student);
 
-        if(indexOfStudent == NOT_FOUND)
-        {
+        if(indexOfStudent == NOT_FOUND) {
             return false;
         }
 
@@ -131,13 +135,11 @@ public class Roster {
         this.size--;
         shifting();
         return true;
-
-
-
-        //return false;
     }
 
-    //complete, must reformat
+    /**
+     * Prints each Student's information in the roster collection.
+     */
     public void print()
     {
         if(this.size == EMPTY)
@@ -156,7 +158,9 @@ public class Roster {
         System.out.println("* end of roster **");
     }
 
-    //complete, must reformat
+    /**
+     * Prints each Student's information in the roster collection by name.
+     */
     public void printByNames()
     {
         if(this.size == EMPTY)
@@ -169,10 +173,8 @@ public class Roster {
 
         String[] names = new String[this.roster.length];
 
-        for(int i = 0; i < this.roster.length; i++)
-        {
-            if(this.roster[i] != null)
-            {
+        for(int i = 0; i < this.roster.length; i++) {
+            if(this.roster[i] != null) {
                 names[i] = this.roster[i].getProfile().getName();
                 //names[i] = this.roster[i].getGenre();
             }
@@ -180,19 +182,18 @@ public class Roster {
 
         insertionSort(names);
 
-        for(int i = 0; i < this.size; i++)
-        {
+        for(int i = 0; i < this.size; i++) {
             System.out.println(this.roster[i].toString());
         }
-
-
         System.out.println("* end of roster **");
     }
-    //complete, must reformat
+
+    /**
+     * Prints each Student's information in the roster collection by Payments made by their payment date.
+     */
     public void printByPaymentsMadeByPaymentDate()
     {
-        if(this.size == EMPTY)
-        {
+        if(this.size == EMPTY) {
             System.out.println("Student roster is empty!");
             return;
         }
@@ -202,20 +203,16 @@ public class Roster {
         Date paymentMades[] = new Date[this.roster.length];
 
         System.out.println("welcome");
-        for(int i = 0; i < this.roster.length; i++)
-        {
-            if(this.roster[i] != null && this.roster[i].getLastPaymentDate() != null)
-            {
+        for(int i = 0; i < this.roster.length; i++) {
+            if(this.roster[i] != null && this.roster[i].getLastPaymentDate() != null) {
                 paymentMades[i] = this.roster[i].getLastPaymentDate();
             }
         }
 
         insertionSort(paymentMades);
 
-        for(int i = 0; i < this.size; i++)
-        {
-            if(paymentMades[i] != null)
-            {
+        for(int i = 0; i < this.size; i++) {
+            if(paymentMades[i] != null) {
                 System.out.println(this.roster[i].toString());
             }
         }
@@ -223,8 +220,13 @@ public class Roster {
         System.out.println("* end of roster **");
     }
 
-    //complete, must reformat
-    private <T extends Comparable<T>> void insertionSort(T[] arr) {
+    /**
+     * Sorting algorithm to sort Roster collection based on a generic object.
+     * Used to sort by release date and genre.
+     * @param arr array which the sorting is applied
+     */
+    private <T extends Comparable<T>> void insertionSort(T[] arr)
+    {
         for(int i = 0; i < this.roster.length; i++) {
             T key = arr[i];
             //Album keyPointer = albums[i];
@@ -249,43 +251,38 @@ public class Roster {
         }
     }
 
+    /**
+     * Calculates all the tuition for all students in the roster collection.
+     */
+    public void calculateTuition()
+    {
+        for(int i = 0; i < this.size; i++) {
+            this.roster[i].tuitionDue();
+        }
+    }
 
+    /*
     //put in addFinancialAid
     public boolean addFinancialAid(Student student, double financialAidAmount)
     {
         //add validation
         int indexOfStudent = find(student);
 
-        if(indexOfStudent == NOT_FOUND)
-        {
+        if(indexOfStudent == NOT_FOUND) {
             return false; //return FALSE
         }
 
-        if(student instanceof Resident)
-        {
+        if(student instanceof Resident) {
             Resident residentStudent = (Resident) student;
             //boolean successfullySetFinAid = residentStudent.setFinancialAid(financialAidAmount);
             return residentStudent.setFinancialAid(financialAidAmount); //checks if awarded once
         }
-        else
-        {
+        else {
             return false;
             //not resident
         }
     }
 
-
-
-    //complete, must reformat
-    public void calculateTuition()
-    {
-        for(int i = 0; i < this.size; i++)
-        {
-            this.roster[i].tuitionDue();
-        }
-    }
-
-    /*
     public int payTuition(Student student, int paymentAmount, Date paymentDate) {
         int index = find(student);
 
@@ -339,9 +336,4 @@ public class Roster {
     }
 
 */
-
-
-
-
-
 }

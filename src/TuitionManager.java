@@ -268,7 +268,9 @@ public class TuitionManager {
         }
 
         Student outputStudent = rosterCollection.getStudent(tempStudent);
-        if(outputStudent.getTuitionDue() < paymentAmount) {
+
+        if(outputStudent.getTuitionDue() < paymentAmount)
+        {
             System.out.println("Amount is greater than amount due.");
             return;
         }
@@ -312,7 +314,7 @@ public class TuitionManager {
     public void runSetFinancialAidAmount(String rosterDetails, Roster rosterCollection) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
         String name, major, amount = "";
-        int financialAidAmount = 0;
+        double financialAidAmount = 0;
 
         stringTokenizer.nextToken();
         name = stringTokenizer.nextToken();
@@ -327,7 +329,8 @@ public class TuitionManager {
             return;
         }
 
-        financialAidAmount = Integer.parseInt(amount);
+        financialAidAmount = Double.parseDouble(amount);
+
 
         if(financialAidAmount < 0 || financialAidAmount > 10000)
             System.out.println("Invalid amount.");

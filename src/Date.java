@@ -20,8 +20,7 @@ public class Date implements Comparable<Date>
     public static final int CENTENNIAL = 100;
     /** Constants used to calculate if year is a leap year*/
     public static final int QUATERCENTENNIAL = 400;
-    /** The lower bound for the isValid() year*/
-    public static final int CURRENT_YEAR = 2021;
+
 
     /**
      * Constructs and initializes a Date based on a textual representation of "MM/DD/YYYY".
@@ -57,10 +56,24 @@ public class Date implements Comparable<Date>
         int DAY_MAX_LEAPYEAR = 29;
         int DAY_MAX_NOT_LEAPYEAR = 28;
         Calendar currentDate = Calendar.getInstance();
-
-        if(this.year < CURRENT_YEAR || this.year > currentDate.get(Calendar.YEAR)) {
+//        System.out.println(this.year + " " + this.day + " " + this.month);
+//        System.out.println(currentDate.get(Calendar.YEAR) + " " + currentDate.get(Calendar.DATE) + " "
+//                + (currentDate.get(Calendar.MONTH) + 1));
+        if(this.year != currentDate.get(Calendar.YEAR)) {
             return false;
         }
+        else if(this.year == currentDate.get(Calendar.YEAR) && this.month > (currentDate.get(Calendar.MONTH))) {
+
+            return false;
+        }
+//      else if(this.month <= (currentDate.get(Calendar.MONTH) + 1)) {
+//            System.out.println("xd1");
+//            System.out.println(this.year + " " + this.day + " " + this.month);
+//            System.out.println(currentDate.get(Calendar.YEAR) + " " + currentDate.get(Calendar.DATE) + " "
+//                    + (currentDate.get(Calendar.MONTH) + 1));
+//            if(this.day < currentDate.get(Calendar.DATE))
+//                return false;
+//        }
         else if(this.month >= MONTH_MIN && this.month <= MONTH_MAX) {
             if(this.month % 2 == 1) {
                 return (this.day >= DAY_MIN && this.day <= DAY_MAX_THIRTHY_ONE);
@@ -88,6 +101,8 @@ public class Date implements Comparable<Date>
             }
         }
         else {
+            System.out.println("xd8");
+
             return false;
         }
     }
@@ -142,7 +157,7 @@ public class Date implements Comparable<Date>
     public static void main(String[] args) {
         // test case #1, a date with a year before 1980 should be invalid
         // fail
-        Date date = new Date("1/2/1900");
+        Date date = new Date("12/1/2021");
         System.out.println("Test Case #1");
         if(date.isValid())
             System.out.println("Pass.");
@@ -151,7 +166,7 @@ public class Date implements Comparable<Date>
 
         // test case #2, a date with an invalid month
         // fail
-        date = new Date("15/2/2000");
+        date = new Date("2/29/2021");
         System.out.println("Test Case #2");
         if(date.isValid())
             System.out.println("Pass.");

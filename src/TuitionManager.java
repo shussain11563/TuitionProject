@@ -242,10 +242,11 @@ public class TuitionManager {
     public void runPayTuition(String rosterDetails, Roster rosterCollection) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
         String name, major, amount, date = "";
-        int paymentAmount = 0;
+        Date paymentDate = null;
+        double paymentAmount = 0;
         stringTokenizer.nextToken();
         name = stringTokenizer.nextToken();
-        major = stringTokenizer.nextToken();
+        major = stringTokenizer.nextToken().toUpperCase();
         Major addMajor = Major.valueOf(major);
 
         try {
@@ -258,9 +259,16 @@ public class TuitionManager {
         }
 
         Student tempStudent = new Student(name,addMajor);
-        paymentAmount = Integer.parseInt(amount);
-        date = stringTokenizer.nextToken();
-        Date paymentDate = new Date(date);
+        paymentAmount = Double.parseDouble(amount);
+
+        try {
+            date = stringTokenizer.nextToken();
+            paymentDate = new Date(date);
+
+        }
+        catch (NoSuchElementException ex1) {
+        }
+
         int holder = rosterCollection.payTuition(tempStudent, paymentAmount, paymentDate);
 
         if(holder == -2){

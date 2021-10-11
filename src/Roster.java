@@ -30,6 +30,21 @@ public class Roster {
         return NOT_FOUND;
     }
 
+    public Student getStudent(Student student)
+    {
+        int index = find(student);
+
+        if(index == NOT_FOUND)
+        {
+            return null;
+        }
+        else
+        {
+            return this.roster[index];
+        }
+
+    }
+
     //Complete, must reformat
     private void grow()
     {
@@ -236,6 +251,7 @@ public class Roster {
         }
     }
 
+    /*
     public int payTuition(Student student, int paymentAmount, Date paymentDate) {
         int index = find(student);
 
@@ -256,6 +272,7 @@ public class Roster {
         }
         return 10;
     }
+    */
 
     //BOOLEAN
     public int setStudyAbroad(Student student) {

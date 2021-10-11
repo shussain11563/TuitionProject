@@ -1,3 +1,9 @@
+/**
+ * The Roster class is an arraylist data structure that contains Students and related types.
+ * This class contains methods that allow adding, deleting, sorting, lending, removing
+ * and other manipulations of the arraylist.
+ * @author Sharia Hussain, David Lam
+ */
 public class Roster {
     private Student[] roster;
     private int size; //keep track of the number of students in the roster
@@ -8,13 +14,21 @@ public class Roster {
     private static final int GROWTH_FACTOR = 4;
     private static final int EMPTY = 0;
 
-
+    /**
+     * Constructs and initializes a Student Roster object.
+     * Initializes a roster array with size of INITIAL_CAPACITY (4).
+     */
     public Roster()
     {
         this.roster = new Student[INITIAL_CAPACITY];
         this.size = 0;
     }
 
+    /**
+     * Finds a student within the Student Roster.
+     * @param student the student to find within the Student Roster.
+     * @return position of student in rosters array, returns NOT_FOUND (-1) if not found.
+     */
     private int find(Student student)
     {
         for(int i = 0; i < this.size; i++)
@@ -30,6 +44,11 @@ public class Roster {
         return NOT_FOUND;
     }
 
+    /**
+     * Returns the Student from the Student Roster.
+     * @param student the student to find and return.
+     * @return the student if the student is within the Student Roster, null otherwise
+     */
     public Student getStudent(Student student)
     {
         int index = find(student);
@@ -45,7 +64,10 @@ public class Roster {
 
     }
 
-    //Complete, must reformat
+    /**
+     * Grows the Student Roster by GROWTH_FACTOR.
+     * grow() is called in add() when the roster array is full.
+     */
     private void grow()
     {
         Student[] oldRoster = this.roster;
@@ -56,11 +78,12 @@ public class Roster {
         {
             this.roster[i] = oldRoster[i];
         }
-
-        //this.roster = newRoster;
-
     }
 
+    /**
+     * shifting() is called after a removal in the Roster is done in remove().
+     * Keeps the albums array contiguous with no gaps by shifting.
+     */
     private void shifting() {
         for(int i = 0; i < this.roster.length - 1; i++) {
             if(this.roster[i] == null) {
@@ -70,7 +93,12 @@ public class Roster {
         }
     }
 
-    //complete, must needed
+    /**
+     * Adds a student to the Student Roster and increases counter.
+     * Grows the Student Roster to store more than the capacity of the Student Roster.
+     * @param student the student to add to the Roster.
+     * @return true if adding student to the Roster was successful, false if the student is already in the Roster.
+     */
     public boolean add(Student student)
     {
 
@@ -89,7 +117,7 @@ public class Roster {
         return true;
     }
 
-    //complete, must reformat
+
     public boolean remove(Student student)
     {
         int indexOfStudent = find(student);

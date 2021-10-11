@@ -201,7 +201,6 @@ public class Roster {
 
         Date paymentMades[] = new Date[this.roster.length];
 
-        System.out.println("welcome");
         for(int i = 0; i < this.roster.length; i++)
         {
             if(this.roster[i] != null && this.roster[i].getLastPaymentDate() != null)

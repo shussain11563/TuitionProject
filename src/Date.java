@@ -20,8 +20,7 @@ public class Date implements Comparable<Date>
     public static final int CENTENNIAL = 100;
     /** Constants used to calculate if year is a leap year*/
     public static final int QUATERCENTENNIAL = 400;
-
-
+    
     /**
      * Constructs and initializes a Date based on a textual representation of "MM/DD/YYYY".
      */
@@ -56,23 +55,13 @@ public class Date implements Comparable<Date>
         int DAY_MAX_LEAPYEAR = 29;
         int DAY_MAX_NOT_LEAPYEAR = 28;
         Calendar currentDate = Calendar.getInstance();
-//        System.out.println(this.year + " " + this.day + " " + this.month);
-//        System.out.println(currentDate.get(Calendar.YEAR) + " " + currentDate.get(Calendar.DATE) + " "
-//                + (currentDate.get(Calendar.MONTH) + 1));
+
         if(this.year != currentDate.get(Calendar.YEAR)) {
             return false;
         }
         else if(this.year == currentDate.get(Calendar.YEAR) && this.month > (currentDate.get(Calendar.MONTH))) {
             return false;
         }
-//      else if(this.month <= (currentDate.get(Calendar.MONTH) + 1)) {
-//            System.out.println("xd1");
-//            System.out.println(this.year + " " + this.day + " " + this.month);
-//            System.out.println(currentDate.get(Calendar.YEAR) + " " + currentDate.get(Calendar.DATE) + " "
-//                    + (currentDate.get(Calendar.MONTH) + 1));
-//            if(this.day < currentDate.get(Calendar.DATE))
-//                return false;
-//        }
         else if(this.month >= MONTH_MIN && this.month <= MONTH_MAX) {
             if(this.month % 2 == 1) {
                 return (this.day >= DAY_MIN && this.day <= DAY_MAX_THIRTHY_ONE);

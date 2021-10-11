@@ -124,7 +124,7 @@ public class TuitionManager {
                 finalizeAddStudent(rosterCollection, newTriStateStudent);
             }
             else {
-                System.out.println("Not apart of the tri-state area.");
+                System.out.println("Not part of the tri-state area.");
                 return;
             }
         }
@@ -145,7 +145,7 @@ public class TuitionManager {
         if(rosterCollection.add(student))
             System.out.println("Student added.");
         else {
-            System.out.println("Student is already in the roster");
+            System.out.println("Student is already in the roster.");
         }
     }
 

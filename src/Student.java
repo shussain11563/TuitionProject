@@ -7,7 +7,6 @@ public class Student {
     private double totalPayment;
     private Date lastPaymentDate;
     private boolean isStatus; //redundant ----> cant internationa;
-
     /**
      * Retrieves the profile of the student
      * @return the profile of the student

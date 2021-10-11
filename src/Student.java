@@ -103,14 +103,20 @@ public class Student {
         this.totalPayment = totalPayment;
     }
 
+    public void setLastPaymentDate(Date lastPaymentDate)
+    {
+        this.lastPaymentDate = lastPaymentDate;
+    }
+
     public void payTuiton(double paidTuition, Date lastPaymentDate)
     {
 
 
         //add validation
 
-        setTotalPayment(getTotalPayment() + paidTuition);
-        setTuitionDue(getTuitionDue() - paidTuition);
+        this.setTotalPayment(getTotalPayment() + paidTuition);
+        double newTuition = (getTuitionDue() - paidTuition) > 0 ? getTuitionDue()-paidTuition : 0;
+        this.setTuitionDue(newTuition);
         this.lastPaymentDate = lastPaymentDate;
     }
 

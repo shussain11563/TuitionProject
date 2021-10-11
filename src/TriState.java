@@ -51,6 +51,9 @@ public class TriState extends NonResident
                         (Student.NON_RES_PART_TIME_TUITION_RATE * this.getCreditHours()));
             }
         }
+
+        double newTuition = (getTuitionDue() - getTotalPayment()) > 0 ? getTuitionDue()-getTotalPayment() : 0;
+        this.setTuitionDue(newTuition);
         /*
 
         //maybe call super for this

@@ -21,6 +21,9 @@ public class NonResident extends Student
             this.setTuitionDue((Student.UNIVERSITY_FEE * PART_TIME_FEE_REDUCTION) +
                     (Student.NON_RES_PART_TIME_TUITION_RATE * this.getCreditHours()));
         }
+
+        double newTuition = (getTuitionDue() - getTotalPayment()) > 0 ? getTuitionDue()-getTotalPayment() : 0;
+        this.setTuitionDue(newTuition);
     
         /*
 

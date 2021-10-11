@@ -12,8 +12,11 @@ public class International extends NonResident
     //if study abroad, max is 12
     public void setIsStudyAbroad()
     {
+        double initialValue = 0;
         this.isStudyAbroad = true;
         this.setCreditHours(MIN_FULL_TIME_CREDIT);
+        setTotalPayment(initialValue);
+        setLastPaymentDate(null);
         this.tuitionDue();
 
         //recalculate tuition
@@ -52,6 +55,12 @@ public class International extends NonResident
         {
             this.setTuitionDue(Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE + Student.ADDITIONAL_FEE);
         }
+
+        double newTuition = (getTuitionDue() - getTotalPayment()) > 0 ? getTuitionDue()-getTotalPayment() : 0;
+        this.setTuitionDue(newTuition);
+
+
+
         // Internationals cant do Part-Time
 
 

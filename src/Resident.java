@@ -53,6 +53,9 @@ public class Resident extends Student
                     (Student.RES_PART_TIME_TUITION_RATE * this.getCreditHours()));
         }
 
+        double newTuition = (getTuitionDue() - getTotalPayment()) > 0 ? getTuitionDue()-getTotalPayment() : 0;
+        this.setTuitionDue(newTuition);
+
         /*
         //tuition + fee
         if(this.getStatus() == FULL_TIME)

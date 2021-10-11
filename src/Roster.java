@@ -1,3 +1,5 @@
+import java.awt.*;
+
 /**
  * The Roster class is an arraylist data structure that contains Students and related types.
  * This class contains methods that allow adding, deleting, sorting, lending, removing
@@ -154,6 +156,7 @@ public class Roster {
         }
 
         System.out.println("* end of roster **");
+
     }
 
     //complete, must reformat
@@ -178,19 +181,22 @@ public class Roster {
             }
         }
 
+
         insertionSort(names);
+        bubbleNullToEnd();
 
         for(int i = 0; i < this.size; i++)
         {
+
             System.out.println(this.roster[i].toString());
         }
 
-
         System.out.println("* end of roster **");
     }
-    //complete, must reformat
+
     public void printByPaymentsMadeByPaymentDate()
     {
+
         if(this.size == EMPTY)
         {
             System.out.println("Student roster is empty!");
@@ -211,20 +217,28 @@ public class Roster {
 
         insertionSort(paymentMades);
 
-        for(int i = 0; i < this.size; i++)
+        for(int i = 0; i < this.roster.length; i++)
         {
+            //System.out.println(this.roster[i].toString());
             if(paymentMades[i] != null)
             {
                 System.out.println(this.roster[i].toString());
             }
         }
 
+        bubbleNullToEnd();
+
+
         System.out.println("* end of roster **");
     }
 
     private <T extends Comparable<T>> int safeNullCompareTo(T first, T second)
     {
-        if(second == null)
+        if(first == null)
+        {
+            return -1;
+        }
+        else if(second == null)
         {
             return 1;
         }
@@ -234,6 +248,49 @@ public class Roster {
         }
 
     }
+
+    private void bubbleNullToEnd()
+    {
+        Student[] oldRoster = this.roster;
+        Student[] newRoster = new Student[oldRoster.length];
+        int indexCounter = 0;
+
+        for(int i = 0; i < oldRoster.length; i++)
+        {
+            if(oldRoster[i] != null)
+            {
+                newRoster[indexCounter] = oldRoster[i];
+                indexCounter++;
+            }
+        }
+        this.roster = newRoster;
+    }
+
+    /*
+    private void bubbleNullToEnd(Date[] arr)
+    {
+        Date[] old = arr;
+        Date[] newDate = new Date[arr.length];
+
+        int indexCounter = 0;
+
+        for(int i = 0; i < arr.length; i++)
+        {
+            if(old[i] == null)
+            {
+
+            }
+
+            if(oldRoster[i] != null)
+            {
+                newRoster[indexCounter] = oldRoster[i];
+                indexCounter++;
+            }
+        }
+        this.roster = newRoster;
+    }
+    */
+
     //complete, must reformat
     private <T extends Comparable<T>> void insertionSort(T[] arr) {
         for(int i = 0; i < this.roster.length; i++) {
@@ -251,7 +308,7 @@ public class Roster {
 
             //while(j>=0 && arr[j]!=null && arr[j].compareTo(key)>0)
             //while(j>=0 && arr[j]!=null && key!=null && arr[j].compareTo(key)>0)
-            //while(j>=0 && arr[j]!=null && key!=null && arr[j].compareTo(key)>0)
+            //while(j>=0 && arr[j]!=null && arr[j].compareTo(key)>0)
             while(j>=0 && arr[j]!=null && safeNullCompareTo(arr[j], key) > 0)
             {
 
@@ -264,102 +321,16 @@ public class Roster {
             arr[j + 1] = key;
             this.roster[j + 1] = keyPointer;
         }
+        //bubbleNullToEnd();
     }
 
-
-    //put in addFinancialAid
-    /*
-    public boolean addFinancialAid(Student student, double financialAidAmount)
-    {
-        //add validation
-        int indexOfStudent = find(student);
-
-        if(indexOfStudent == NOT_FOUND)
-        {
-            return false; //return FALSE
-        }
-
-        if(student instanceof Resident)
-        {
-            Resident residentStudent = (Resident) student;
-            //boolean successfullySetFinAid = residentStudent.setFinancialAid(financialAidAmount);
-            return residentStudent.setFinancialAid(financialAidAmount); //checks if awarded once
-        }
-        else
-        {
-            return false;
-            //not resident
-        }
-    }
-*/
-
-
-    //complete, must reformat
     public void calculateTuition()
     {
         for(int i = 0; i < this.size; i++)
         {
             this.roster[i].tuitionDue();
         }
-    }
-
-    /*
-    public int payTuition(Student student, int paymentAmount, Date paymentDate) {
-        int index = find(student);
-
-        if(index >= 0)
-        {
-            Student tempStudent = roster[index];
-            if(tempStudent.getTuitionDue() < paymentAmount) {
-                return -2;
-
-            }
-            else if(paymentAmount <= 0) {
-                return -1;
-            }
-            else if(!paymentDate.isValid() ) {
-                return 0;
-            }
-            else {
-                System.out.println(student.getTuitionDue());
-                System.out.println(student.getTuitionDue() - paymentAmount);
-
-                roster[index].setTuitionDue(student.getTuitionDue() - paymentAmount);
-                return 1;
-            }
-        }
-        return 10;
-    }
-    */
-
-    //BOOLEAN
-    /*
-    public int setStudyAbroad(Student student) {
-        int index = find(student);
-        if(index != NOT_FOUND)
-        {
-            Student tempStudent = roster[index];
-            if(tempStudent instanceof International)
-            {
-                ((International) tempStudent).setIsStudyAbroad();
-                return FOUND;
-            }
-            else{
-                return NOT_FOUND;
-            }
-        }
-        else {
-            return NOT_FOUND;
-        }
-
-
 
     }
-
-*/
-
-
-
-
 
 }

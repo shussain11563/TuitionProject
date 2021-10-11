@@ -151,17 +151,27 @@ public class TuitionManager {
 
     private boolean checkAddStudent(String rosterDetails) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
-        String addType, name, major, credits = "";
+        String addType, name, major, originalMajorParameter, credits = "";
 
         addType = stringTokenizer.nextToken();
 
         try {
+
+
+            major = stringTokenizer.nextToken();
+            originalMajorParameter = major;
+            major = major.toUpperCase();
+
+            try {
+                credits = stringTokenizer.nextToken();
+
             name = stringTokenizer.nextToken();
         }
         catch (NoSuchElementException ex1) {
             System.out.println("Missing data in command line.");
             return false;
         }
+
 
         try {
             major = stringTokenizer.nextToken().toUpperCase();
@@ -181,7 +191,7 @@ public class TuitionManager {
         }
 
         if(!(major.equals("CS") || major.equals("IT") || major.equals("BA") || major.equals("EE") || major.equals("ME"))) {
-            System.out.println("'" + major + "' is not a valid major.");
+            System.out.println("'" + originalMajorParameter + "' is not a valid major.");
             return false;
         }
 

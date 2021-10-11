@@ -155,6 +155,18 @@ public class TuitionManager {
 
         addType = stringTokenizer.nextToken();
 
+        major = stringTokenizer.nextToken();
+        originalMajorParameter = major;
+        major = major.toUpperCase();
+
+        try {
+            name = stringTokenizer.nextToken();
+        }
+        catch (NoSuchElementException ex1) {
+            System.out.println("Missing data in command line.");
+            return false;
+        }
+
         try {
             major = stringTokenizer.nextToken();
             originalMajorParameter = major;
@@ -167,7 +179,6 @@ public class TuitionManager {
 
         try {
             credits = stringTokenizer.nextToken();
-
         }
         catch (NoSuchElementException ex1) {
             System.out.println("Credits hours missing.");

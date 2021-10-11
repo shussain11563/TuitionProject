@@ -201,6 +201,7 @@ public class Roster {
 
         Date paymentMades[] = new Date[this.roster.length];
 
+        System.out.println("welcome");
         for(int i = 0; i < this.roster.length; i++)
         {
             if(this.roster[i] != null && this.roster[i].getLastPaymentDate() != null)
@@ -213,7 +214,10 @@ public class Roster {
 
         for(int i = 0; i < this.size; i++)
         {
-            System.out.println(this.roster[i].toString());
+            if(paymentMades[i] != null)
+            {
+                System.out.println(this.roster[i].toString());
+            }
         }
 
         System.out.println("* end of roster **");
@@ -231,8 +235,10 @@ public class Roster {
             //might require instance off?
             int j = i-1;
 
-            while(j>=0 && arr[j]!=null && key!=null && arr[j].compareTo(key)>0)
+            while(j>=0 && arr[j]!=null && arr[j].compareTo(key)>0)
+            //while(j>=0 && arr[j]!=null && key!=null && arr[j].compareTo(key)>0)
             {
+
                 arr[j + 1] = arr[j];
                 this.roster[j + 1] = this.roster[j];
                 j = j - 1;

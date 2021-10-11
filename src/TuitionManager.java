@@ -20,7 +20,8 @@ public class TuitionManager {
 
 
         while(scanner.hasNextLine()) {
-            if(runProject == false) {
+            if(runProject == false)
+            {
                 System.out.println("Tuition Manager starts running.");
                 runProject = true;
             }
@@ -142,7 +143,7 @@ public class TuitionManager {
 
     private void finalizeAddStudent(Roster rosterCollection, Student student) {
         if(rosterCollection.add(student))
-            System.out.println("Student Added.");
+            System.out.println("Student added.");
         else {
             System.out.println("Student is already in the roster");
         }
@@ -243,7 +244,7 @@ public class TuitionManager {
         paymentAmount = Integer.parseInt(amount);
         date = stringTokenizer.nextToken();
         Date paymentDate = new Date(date);
-        int holder = rosterCollection.payTuition(rosterCollection, tempStudent, paymentAmount, paymentDate);
+        int holder = rosterCollection.payTuition(tempStudent, paymentAmount, paymentDate);
 
         if(holder == -2){
             System.out.println("Amount is greater than amount due.");
@@ -269,7 +270,7 @@ public class TuitionManager {
         Major addMajor = Major.valueOf(major);
 
         Student tempStudent = new Student(name,addMajor);
-        int holder = rosterCollection.setStudyAbroad(rosterCollection, tempStudent);
+        int holder = rosterCollection.setStudyAbroad(tempStudent);
 
         if(holder == -1){
             System.out.println("Couldn't find the international student.");

@@ -13,7 +13,7 @@ public class International extends NonResident
     public void setIsStudyAbroad()
     {
         this.isStudyAbroad = true;
-        //this.setCreditHours(MIN_FULL_TIME_CREDIT);
+        this.setCreditHours(MIN_FULL_TIME_CREDIT);
         this.tuitionDue();
 
         //recalculate tuition
@@ -48,8 +48,9 @@ public class International extends NonResident
                     Student.NON_RES_PART_TIME_TUITION_RATE * (this.getCreditHours() - CREDIT_HOURS_MAX));
         }
         // Full-Time and Credits Between 12 and 16
-        else if(this.getStatus() == FULL_TIME) {
-            this.setTuitionDue(Student.RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE + Student.ADDITIONAL_FEE);
+        else if(this.getStatus() == FULL_TIME)
+        {
+            this.setTuitionDue(Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE + Student.ADDITIONAL_FEE);
         }
         // Internationals cant do Part-Time
 
@@ -76,7 +77,8 @@ public class International extends NonResident
     @Override
     public String toString()
     {
-        return String.format("%s:international", super.toString());
+        String isStudyAbroadTextRepresentation = (isStudyAbroad) ? ":study abroad" : "";
+        return String.format("%s:international%s", super.toString(), isStudyAbroadTextRepresentation);
     }
 
 

@@ -22,6 +22,7 @@ public class Date implements Comparable<Date>
 
     /**
      * Constructs and initializes a Date based on a textual representation of "MM/DD/YYYY".
+     * @param date is a textual representation of the date
      */
     public Date(String date) {
         StringTokenizer stringTokenizer = new StringTokenizer(date, "/");

@@ -21,7 +21,6 @@ public class Date implements Comparable<Date>
     /** Constants used to calculate if year is a leap year*/
     public static final int QUATERCENTENNIAL = 400;
 
-
     /**
      * Constructs and initializes a Date based on a textual representation of "MM/DD/YYYY".
      */
@@ -56,24 +55,13 @@ public class Date implements Comparable<Date>
         int DAY_MAX_LEAPYEAR = 29;
         int DAY_MAX_NOT_LEAPYEAR = 28;
         Calendar currentDate = Calendar.getInstance();
-//        System.out.println(this.year + " " + this.day + " " + this.month);
-//        System.out.println(currentDate.get(Calendar.YEAR) + " " + currentDate.get(Calendar.DATE) + " "
-//                + (currentDate.get(Calendar.MONTH) + 1));
+
         if(this.year != currentDate.get(Calendar.YEAR)) {
             return false;
         }
         else if(this.year == currentDate.get(Calendar.YEAR) && this.month > (currentDate.get(Calendar.MONTH))) {
-
             return false;
         }
-//      else if(this.month <= (currentDate.get(Calendar.MONTH) + 1)) {
-//            System.out.println("xd1");
-//            System.out.println(this.year + " " + this.day + " " + this.month);
-//            System.out.println(currentDate.get(Calendar.YEAR) + " " + currentDate.get(Calendar.DATE) + " "
-//                    + (currentDate.get(Calendar.MONTH) + 1));
-//            if(this.day < currentDate.get(Calendar.DATE))
-//                return false;
-//        }
         else if(this.month >= MONTH_MIN && this.month <= MONTH_MAX) {
             if(this.month % 2 == 1) {
                 return (this.day >= DAY_MIN && this.day <= DAY_MAX_THIRTHY_ONE);
@@ -143,110 +131,5 @@ public class Date implements Comparable<Date>
         }
 
         return 10;
-    }
-
-    /**
-     * Method that returns a formatted string of the Date Object.
-     * @return Returns a formatted string in the format of Month/Day/Year.
-     */
-    @Override
-    public String toString()
-    {
-        return String.format("%d/%d/%d", this.month, this.day, this.year);
-    }
-
-    /**
-     * Testbed main for the Date class.
-     */
-    public static void main(String[] args) {
-        // test case #1, a date with a year before 1980 should be invalid
-        // fail
-        Date date = new Date("12/1/2021");
-        System.out.println("Test Case #1");
-        if(date.isValid())
-            System.out.println("Pass.");
-        else
-            System.out.println("Fail.");
-
-        // test case #2, a date with an invalid month
-        // fail
-        date = new Date("2/29/2021");
-        System.out.println("Test Case #2");
-        if(date.isValid())
-            System.out.println("Pass.");
-        else
-            System.out.println("Fail.");
-
-        // test case #3, a date with an invalid day
-        // fail
-        date = new Date("5/50/2000");
-        System.out.println("Test Case #3");
-        if(date.isValid())
-            System.out.println("Pass.");
-        else
-            System.out.println("Fail.");
-
-        // test case #4, check for valid leap year
-        // pass
-        date = new Date("2/29/2016");
-        System.out.println("Test Case #4");
-        if(date.isValid())
-            System.out.println("Pass.");
-        else
-            System.out.println("Fail.");
-
-        // test case #5, check for invalid day for leap year
-        // fail
-        date = new Date("2/30/2016");
-        System.out.println("Test Case #5");
-        if(date.isValid())
-            System.out.println("Pass.");
-        else
-            System.out.println("Fail.");
-
-        // test case #6, check for invalid day on not a leap year
-        // fail
-        date = new Date("2/29/2013");
-        System.out.println("Test Case #6");
-        if(date.isValid())
-            System.out.println("Pass.");
-        else
-            System.out.println("Fail.");
-
-        // test case #7, check the max/min for day/month/year
-        // fail
-        date = new Date("30/27123/2000");
-        System.out.println("Test Case #7");
-        if(date.isValid())
-            System.out.println("Pass.");
-        else
-            System.out.println("Fail.");
-
-        // test case #8, check if the day is valid
-        // fail
-        date = new Date("301/5/2005");
-        System.out.println("Test Case #8");
-        if(date.isValid())
-            System.out.println("Pass.");
-        else
-            System.out.println("Fail.");
-
-        // test case #9, check if the month is valid
-        // fail
-        date = new Date("4/31/2016");
-        System.out.println("Test Case #9");
-        if(date.isValid())
-            System.out.println("Pass.");
-        else
-            System.out.println("Fail.");
-
-        // test case #10, check if the month is between 1980 and current year
-        // fail
-        date = new Date("9/1/2070");
-        System.out.println("Test Case #10");
-        if(date.isValid())
-            System.out.println("Pass.");
-        else
-            System.out.println("Fail.");
     }
 }

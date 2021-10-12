@@ -1,41 +1,50 @@
+/**
+ * Resident is the subclass for Student and defines students that are residents of NJ.
+ * Contains methods for getting, setting, manipulating, paying tuition for students
+ * @author Sharia Hussain, David Lam
+ */
+
 public class Resident extends Student
 {
     private boolean alreadyAwarded;
-    private static final double RESIDENTIAL_FINANCIAL_AID_LIMIT = 10000; // UPPER LIMIT
     private double awardedFinancialAid;
 
+
+    /**
+     * Constructs and initializes a Resident Student object for use.
+     * Used for add, remove, pay
+     * @param name the name of the student
+     * @param major the major of the student
+     * @param creditHours the credits hours of the student
+     */
     public Resident(String name, Major major, int creditHours) {
-
-
         super(name, major, creditHours); //change this
         this.alreadyAwarded = false;
         this.awardedFinancialAid = 0;
     }
 
-    //constant for successful
-    //boolean?? or void
-    //add exception
+    /**
+     * Sets the financial aid of a given student and checks if the student was already given aid
+     * @param financialAid the financial aid amount to be applied
+     */
     public boolean setFinancialAid(double financialAid)
     {
-        //validatation required....remove magic number
-        if(alreadyAwarded == false)
-        {
+        if(alreadyAwarded == false) {
             awardedFinancialAid = financialAid;
             double newTuition = (getTuitionDue()-financialAid > 0) ? (getTuitionDue() - financialAid) : 0 ;
             setTuitionDue(newTuition);
-
             this.alreadyAwarded = true;
 
             return true;
-
         }
 
         return false;
-
     }
 
-
-
+    /**
+     * Overrides the tuitionDue method in Student Parent class.
+     * Calculates the tuition for a resident student
+     */
     @Override
     public void tuitionDue() {
         // Full-Time and Credits > 16
@@ -85,17 +94,15 @@ public class Resident extends Student
 
         }
         */
-    } 
+    }
 
+    /**
+     * Overrides toString method to represent Student objects.
+     * @return a textual representation of the Student's information
+     */
     @Override
     public String toString() {
         return String.format("%s:resident", super.toString());
-    }
-
-    public static void main(String[] args) {
-        System.out.println("Hello");
-        Student s1 = new Resident("Sharia Hussain", Major.CS, 12);
-        //System.out.println(s1.test());
     }
 
 }

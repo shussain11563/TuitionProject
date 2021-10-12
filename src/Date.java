@@ -1,13 +1,12 @@
+import java.util.StringTokenizer;
+import java.util.Calendar;
+
 /**
  * The Date class gives representation to the Date bases on
  * the Gregorian Calendar and contains methods that compare
  * and check the validity of a Date.
  * @author Sharia Hussain, David Lam
  */
-
-import java.util.StringTokenizer;
-import java.util.Calendar;
-
 public class Date implements Comparable<Date>
 {
     private final int month;
@@ -89,7 +88,7 @@ public class Date implements Comparable<Date>
             }
         }
         else {
-            System.out.println("xd8");
+
 
             return false;
         }

@@ -2,17 +2,15 @@
  * Profile allows a student to define their own profile under their name and major.
  * @author Sharia Hussain, David Lam
  */
-
-
 public class Profile {
     private String name;
     private Major major;
 
     /**
      * Constructs and initializes a profile for use.
-     * Used for students background information
-     * @param name the name of the student
-     * @param major the major of the student
+     * Used for students background information.
+     * @param name the name of the student.
+     * @param major the major of the student.
      */
     public Profile(String name, Major major) {
         this.name = name;
@@ -20,8 +18,8 @@ public class Profile {
     }
 
     /**
-     * Retrieves the name of the student
-     * @return the name of the student
+     * Retrieves the name of the student.
+     * @return the name of the student.
      */
     public String getName() {
         return this.name;

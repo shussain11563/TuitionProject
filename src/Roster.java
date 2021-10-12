@@ -1,6 +1,6 @@
 /**
  * The Roster class is an arraylist data structure that contains Students and related types.
- * This class contains methods that allow adding, deleting, sorting, lending, removing
+ * This class contains methods that allow adding, deleting, sorting, lending, removing.
  * and other manipulations of the arraylist.
  * @author Sharia Hussain, David Lam
  */
@@ -24,7 +24,6 @@ public class Roster {
 
     /**
      * Finds a student within the Student Roster.
-     *
      * @param student the student to find within the Student Roster.
      * @return index of student in rosters array, returns NOT_FOUND (-1) if not found.
      */
@@ -41,9 +40,8 @@ public class Roster {
 
     /**
      * Returns the Student from the Student Roster.
-     *
      * @param student the student to find and return.
-     * @return the student if the student is within the Student Roster, null otherwise
+     * @return the student if the student is within the Student Roster, null otherwise.
      */
     public Student getStudent(Student student) {
         int index = find(student);
@@ -72,7 +70,7 @@ public class Roster {
 
     /**
      * shifting() is called after a removal in the Roster is done in remove().
-     * Keeps the albums array contiguous with no gaps by shifting.
+     * Keeps the rosters contiguous with no gaps by shifting.
      */
     private void shifting() {
         for (int i = 0; i < this.roster.length - 1; i++) {
@@ -86,7 +84,6 @@ public class Roster {
     /**
      * Adds a student to the Student Roster and increases counter.
      * Grows the Student Roster to store more than the capacity of the Student Roster.
-     *
      * @param student the student to add to the Roster.
      * @return true if adding student to the Roster was successful, false if the student is already in the Roster.
      */
@@ -107,9 +104,8 @@ public class Roster {
 
     /**
      * Removes a specified Student from the roster array.
-     *
-     * @param student the student to remove from the roster
-     * @return true if removing an student from the roster collection is successful, returns false otherwise.
+     * @param student the student to remove from the roster.
+     * @return true if removing a student from the roster collection is successful, returns false otherwise.
      */
     public boolean remove(Student student) {
         int indexOfStudent = find(student);
@@ -159,10 +155,8 @@ public class Roster {
         for (int i = 0; i < this.roster.length; i++) {
             if (this.roster[i] != null) {
                 names[i] = this.roster[i].getProfile().getName();
-                //names[i] = this.roster[i].getGenre();
             }
         }
-
 
         insertionSort(names);
         bubbleNullToEnd();
@@ -201,11 +195,13 @@ public class Roster {
         }
 
         bubbleNullToEnd();
-
-
         System.out.println("* end of roster **");
     }
 
+    /**
+     * Used as an accessory to our insertion sort method.
+     * Bubbles multiple null students to the end.
+     */
     private void bubbleNullToEnd() {
         Student[] oldRoster = this.roster;
         Student[] newRoster = new Student[oldRoster.length];
@@ -220,6 +216,14 @@ public class Roster {
         this.roster = newRoster;
     }
 
+    /**
+     * This method provides a safe version of invoking compareTo for our insertionSort
+     * by defaulting the case of null.
+     * @param first generic object to compare
+     * @param second generic object to compare
+     * @param <T> generic.
+     * @return an integer to determine if first or second is greater such as lexicographic order.
+     */
     private <T extends Comparable<T>> int safeNullCompareTo(T first, T second) {
         if (first == null) {
             return -1;
@@ -233,24 +237,16 @@ public class Roster {
 
     /**
      * Sorting algorithm to sort Roster collection based on a generic object.
-     * Used to sort by release date and genre.
-     *
+     * Used to sort by name and last payment date.
      * @param arr array which the sorting is applied
      */
     private <T extends Comparable<T>> void insertionSort(T[] arr) {
         for (int i = 0; i < this.roster.length; i++) {
             T key = arr[i];
-            //Album keyPointer = albums[i];
 
             Student keyPointer = this.roster[i];
 
-
-            //might require instance off?
             int j = i - 1;
-
-            while (j >= 0 && arr[j] != null && arr[j].compareTo(key) > 0)
-                //while(j>=0 && arr[j]!=null && key!=null && arr[j].compareTo(key)>0)
-                //while(j>=0 && arr[j]!=null && arr[j].compareTo(key)>0)
                 while (j >= 0 && arr[j] != null && safeNullCompareTo(arr[j], key) > 0) {
 
                     arr[j + 1] = arr[j];
@@ -262,7 +258,6 @@ public class Roster {
             arr[j + 1] = key;
             this.roster[j + 1] = keyPointer;
         }
-        //bubbleNullToEnd();
     }
 
     /**
@@ -272,33 +267,5 @@ public class Roster {
         for (int i = 0; i < this.size; i++) {
             this.roster[i].tuitionDue();
         }
-
-        //BOOLEAN
-    /*
-    public int setStudyAbroad(Student student) {
-        int index = find(student);
-        if(index != NOT_FOUND)
-        {
-            Student tempStudent = roster[index];
-            if(tempStudent instanceof International)
-            {
-                ((International) tempStudent).setIsStudyAbroad();
-                return FOUND;
-            }
-            else{
-                return NOT_FOUND;
-            }
-        }
-        else {
-            return NOT_FOUND;
-        }
-
-
-
-    }
-
-*/
-
-
     }
 }

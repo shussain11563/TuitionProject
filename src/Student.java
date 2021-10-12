@@ -1,9 +1,12 @@
 import java.text.DecimalFormat;
 
 /**
- * Student is the parent class of all students that are added to the Roster.
- * Contains methods for getting, setting, manipulating, paying tuition for students
- * @author Sharia Hussain, David Lam
+ * The Student class acts as a blueprint for a Student object
+ * which contains attributes such as profile, credit hours,
+ * tuition due, total payment due, and last payment date.
+ * This class also contains methods to allow
+ * student objects to have representations such as how they are equal.
+ *
  */
 public class Student {
     private Profile profile;
@@ -12,81 +15,6 @@ public class Student {
     private double totalPayment;
     private Date lastPaymentDate;
     private boolean isStatus;
-
-    /**
-     * Retrieves the profile of the student
-     * @return the profile of the student
-     */
-    public Profile getProfile()
-    {
-        return this.profile;
-    }
-
-    /**
-     * Retrieves the credits of the student
-     * @return the credits of the student
-     */
-    public int getCreditHours()
-    {
-        return this.creditHours;
-    }
-
-    /**
-     * Retrieves the tuition due of the student
-     * @return the tuition due of the student
-     */
-    public double getTuitionDue()
-    {
-        return this.tuitionDue;
-    }
-
-    /**
-     * Retrieves the total payment for the tuition of the student
-     * @return the total payment for the tuition of the student
-     */
-    public double getTotalPayment()
-    {
-        return this.totalPayment;
-    }
-
-    /**
-     * Retrieves the date of the last payment made of the student
-     * @return the date of the last payment made of the student
-     */
-    public Date getLastPaymentDate()
-    {
-        return this.lastPaymentDate;
-    }
-
-    /**
-     * Retrieves the status of the student if parttime or fulltime
-     * @return the status of the student if parttime or fulltime
-     */
-    public boolean getStatus()
-    {
-        return this.isStatus;
-    }
-
-    /**
-     * Sets the tuition due of the student
-     * @param tuitionDue the amount for the tuition that is due
-     */
-    public void setTuitionDue(double tuitionDue)
-    {
-        this.tuitionDue = tuitionDue;
-    }
-
-    /**
-     * Sets the credit hours of the student
-     * @param creditHours the number of credits to set for the student
-     */
-    public void setCreditHours(int creditHours) {
-        this.creditHours = creditHours;
-    }
-
-    public void setLastPaymentDate(Date lastPaymentDate) {
-        this.lastPaymentDate = lastPaymentDate;
-    }
 
     /** Constants used to show if a student is full time*/
     public static final boolean FULL_TIME = true;
@@ -146,25 +74,104 @@ public class Student {
     /**
      * Constructs and initializes a Student object for temporary use.
      * Used for add, remove, pay, study abroad.
-     * @param name the name of the student
-     * @param major the major of the student
+     * @param name the name of the student.
+     * @param major the major of the student.
      */
     public Student(String name, Major major) {
         this.profile = new Profile(name, major);
     }
 
     /**
-     * Sets the total payment for the student
-     * @param totalPayment the total payment to be set for a given student
+     * Retrieves the profile of the student.
+     * @return the profile of the student.
+     */
+    public Profile getProfile()
+    {
+        return this.profile;
+    }
+
+    /**
+     * Retrieves the credits of the student.
+     * @return the credits of the student.
+     */
+    public int getCreditHours()
+    {
+        return this.creditHours;
+    }
+
+    /**
+     * Retrieves the tuition due of the student.
+     * @return the tuition due of the student.
+     */
+    public double getTuitionDue()
+    {
+        return this.tuitionDue;
+    }
+
+    /**
+     * Retrieves the total payment for the tuition of the student.
+     * @return the total payment for the tuition of the student.
+     */
+    public double getTotalPayment()
+    {
+        return this.totalPayment;
+    }
+
+    /**
+     * Retrieves the date of the last payment made of the student.
+     * @return the date of the last payment made of the student.
+     */
+    public Date getLastPaymentDate()
+    {
+        return this.lastPaymentDate;
+    }
+
+    /**
+     * Retrieves the status of the student if part-time or full-time.
+     * @return the status of the student if part-time or full-time.
+     */
+    public boolean getStatus()
+    {
+        return this.isStatus;
+    }
+
+    /**
+     * Sets the tuition due of the student.
+     * @param tuitionDue the amount for the tuition that is due.
+     */
+    public void setTuitionDue(double tuitionDue)
+    {
+        this.tuitionDue = tuitionDue;
+    }
+
+    /**
+     * Sets the credit hours of the student.
+     * @param creditHours the number of credits to set for the student.
+     */
+    public void setCreditHours(int creditHours) {
+        this.creditHours = creditHours;
+    }
+
+    /**
+     * Sets the most recent payment date for the student.
+     * @param lastPaymentDate the most recent payment date for the student.
+     */
+    public void setLastPaymentDate(Date lastPaymentDate) {
+        this.lastPaymentDate = lastPaymentDate;
+    }
+
+    /**
+     * Sets the total payment for the student.
+     * @param totalPayment the total payment to be set for a given student.
      */
     public void setTotalPayment(double totalPayment) {
         this.totalPayment = totalPayment;
     }
 
     /**
-     * Pays the tuition with the given amount and also sets the last payment date
-     * @param paidTuition the amount that is being paid for the tuition
-     * @param lastPaymentDate the last payment date of the paid tuition
+     * Pays the tuition with the given amount and also sets the last payment date.
+     * @param paidTuition the amount that is being paid for the tuition.
+     * @param lastPaymentDate the last payment date of the paid tuition.
      */
     public void payTuiton(double paidTuition, Date lastPaymentDate) {
         setTotalPayment(getTotalPayment() + paidTuition);
@@ -174,7 +181,7 @@ public class Student {
 
     /**
      * Overrides toString method to represent Student objects.
-     * @return a textual representation of the Student's information
+     * @return a textual representation of the Student's information.
      */
     @Override
     public String toString() {
@@ -184,6 +191,10 @@ public class Student {
                 this.profile.getMajor(), this.creditHours, df.format(this.tuitionDue), df.format(this.totalPayment), date);
     }
 
+    /**
+     * Overriden by subclasses of Student.
+     * Calculates the tuition for each type of Student.
+     */
     public void tuitionDue() {
     }
 }

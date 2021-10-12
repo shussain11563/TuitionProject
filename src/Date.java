@@ -31,7 +31,7 @@ public class Date implements Comparable<Date>
     }
 
     /**
-     * Date constructor that initializes the instance variables to the present date
+     * Date constructor that initializes the instance variables to the present date.
      */
     public Date() {
         Calendar currentDate = Calendar.getInstance();

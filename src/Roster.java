@@ -188,7 +188,7 @@ public class Roster {
 
         insertionSort(paymentMades);
 
-        for (int i = 0; i < this.size; i++) {
+        for (int i = 0; i < this.roster.length; i++) {
             if (paymentMades[i] != null) {
                 System.out.println(this.roster[i].toString());
             }
@@ -247,13 +247,13 @@ public class Roster {
             Student keyPointer = this.roster[i];
 
             int j = i - 1;
-                while (j >= 0 && arr[j] != null && safeNullCompareTo(arr[j], key) > 0) {
+            while (j >= 0 && arr[j] != null && safeNullCompareTo(arr[j], key) > 0) {
 
-                    arr[j + 1] = arr[j];
-                    this.roster[j + 1] = this.roster[j];
-                    j = j - 1;
+                arr[j + 1] = arr[j];
+                this.roster[j + 1] = this.roster[j];
+                j = j - 1;
 
-                }
+            }
 
             arr[j + 1] = key;
             this.roster[j + 1] = keyPointer;

@@ -7,7 +7,6 @@
 public class Resident extends Student
 {
     private boolean alreadyAwarded;
-    private double awardedFinancialAid;
 
     /**
      * Constructs and initializes a Resident Student object for use.
@@ -19,7 +18,6 @@ public class Resident extends Student
     public Resident(String name, Major major, int creditHours) {
         super(name, major, creditHours); //change this
         this.alreadyAwarded = false;
-        this.awardedFinancialAid = 0;
     }
 
     /**
@@ -29,7 +27,6 @@ public class Resident extends Student
     public boolean setFinancialAid(double financialAid)
     {
         if(alreadyAwarded == false) {
-            awardedFinancialAid = financialAid;
             double newTuition = (getTuitionDue()-financialAid > 0) ? (getTuitionDue() - financialAid) : 0 ;
             setTuitionDue(newTuition);
             this.alreadyAwarded = true;

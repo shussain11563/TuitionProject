@@ -181,9 +181,6 @@ public class Student {
                 this.profile.getMajor(), this.creditHours, df.format(this.tuitionDue), df.format(this.totalPayment), date);
     }
 
-    /**
-     * Method placeholder for the subclasses to override.
-     */
     public void tuitionDue() {
     }
 }

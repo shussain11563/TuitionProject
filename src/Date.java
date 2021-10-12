@@ -131,4 +131,16 @@ public class Date implements Comparable<Date>
 
         return 10;
     }
+
+
+    /**
+     * Method that returns a formatted string of the Date Object.
+     * @return Returns a formatted string in the format of Month/Day/Year.
+     */
+    @Override
+    public String toString()
+    {
+        return String.format("%d/%d/%d", this.month, this.day, this.year);
+    }
+
 }

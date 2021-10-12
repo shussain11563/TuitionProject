@@ -1,21 +1,20 @@
 /**
  * International is the subclass for NonResident and defines students that are NonDomestic to the US.
- * Contains methods for getting, setting, manipulating, paying tuition for students
+ * Contains methods for getting, setting, manipulating, paying tuition for students.
  * @author Sharia Hussain, David Lam
  */
-
 public class International extends NonResident
 {
     private boolean isStudyAbroad;
     private int MIN_FULL_TIME_CREDIT = 12;
 
     /**
-     * Constructs and initializes a International Student object for use.
-     * Used for add, remove, pay
-     * @param name the name of the student
-     * @param major the major of the student
-     * @param creditHours the credits hours of the student
-     * @param isStudyAbroad the status if the student is studying abroad
+     * Constructs and initializes an International Student object for use.
+     * Used for add, remove, pay.
+     * @param name the name of the student.
+     * @param major the major of the student.
+     * @param creditHours the credits hours of the student.
+     * @param isStudyAbroad the status if the student is studying abroad.
      */
     public International(String name, Major major, int creditHours, boolean isStudyAbroad) {
         super(name, major, creditHours);
@@ -23,7 +22,7 @@ public class International extends NonResident
     }
 
     /**
-     * Sets the International students study abroad status to true
+     * Sets the International students study abroad status to true.
      */
     public void setIsStudyAbroad()
     {
@@ -37,7 +36,7 @@ public class International extends NonResident
 
     /**
      * Overrides the tuitionDue method in Student Parent class.
-     * Calculates the tuition for a international student
+     * Calculates the tuition for an international student.
      */
     @Override
     public void tuitionDue()
@@ -59,31 +58,11 @@ public class International extends NonResident
 
         double newTuition = (getTuitionDue() - getTotalPayment()) > 0 ? getTuitionDue()-getTotalPayment() : 0;
         this.setTuitionDue(newTuition);
-
-
-
-        // Internationals cant do Part-Time
-
-
-        /*
-
-        if(this.getCreditHours() > CREDIT_HOURS_MAX) {
-            // Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE + ADDITIONAL_FEE + Student.NON_RES_PART_TIME_TUITION_RATE
-            // * (creditHours - 16);
-        }
-        else if(isStudyAbroad == true) {
-            // Student.UNIVERSITY_FEE + ADDITIONAL_FEE ;
-        }
-        else if(isStudyAbroad == false) {
-            // Student.NON_RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE + ADDITIONAL_FEE ;
-        }
-
-        */
     }
 
     /**
      * Overrides toString method to represent Student objects.
-     * @return a textual representation of the Student's information
+     * @return a textual representation of the Student's information.
      */
     @Override
     public String toString() {

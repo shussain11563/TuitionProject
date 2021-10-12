@@ -9,7 +9,6 @@ public class Resident extends Student
     private boolean alreadyAwarded;
     private double awardedFinancialAid;
 
-
     /**
      * Constructs and initializes a Resident Student object for use.
      * Used for add, remove, pay
@@ -65,35 +64,6 @@ public class Resident extends Student
         double newTuition = (getTuitionDue() - getTotalPayment()) > 0 ? getTuitionDue()-getTotalPayment() : 0;
         this.setTuitionDue(newTuition);
 
-        /*
-        //tuition + fee
-        if(this.getStatus() == FULL_TIME)
-        {
-            this.setTuitionDue((this.getTuitionDue() + FULL_TIME_TUITION));
-            this.setTuitionDue((this.getTuitionDue() + UNIVERSITY_FEE_FULL_TIME));
-        }
-        else if(this.getStatus() == PART_TIME)
-        {
-            this.setTuitionDue((this.getTuitionDue() + (this.getCreditHours() * PART_TIME_TUITION_RATE)));
-            this.setTuitionDue(this.getTuitionDue() + UNIVERSITY_FEE_PART_TIME);
-        }
-
-        //extra credits
-        if(this.getCreditHours() - CREDIT_HOURS_MAX > 0 && this.getStatus() == FULL_TIME)
-        {
-            this.setTuitionDue(this.getTuitionDue() + ((this.getCreditHours() - CREDIT_HOURS_MAX) * PART_TIME_TUITION_RATE));
-
-        if(FULL_TIME == true && creditHours > 16) {
-            // Student.RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE + Student.RES_PART_TIME_TUITION_RATE * (creditHours - 16);
-        }
-        else if(FULL_TIME == true) {
-            // Student.RES_FULL_TIME_TUITION + Student.UNIVERSITY_FEE;
-        }
-        else if(FULL_TIME == false) {
-            // (Student.RES_UNIVERSITY_FEE * PART_TIME_FEE_REDUCTION) + (Student.RES_PART_TIME_TUITION_RATE * creditHours);
-
-        }
-        */
     }
 
     /**

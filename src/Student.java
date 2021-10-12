@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
  * tuition due, total payment due, and last payment date.
  * This class also contains methods to allow
  * student objects to have representations such as how they are equal.
- *
+ * @author Sharia Hussain, David Lam
  */
 public class Student {
     private Profile profile;

@@ -1,11 +1,10 @@
+import java.text.DecimalFormat;
+
 /**
  * Student is the parent class of all students that are added to the Roster.
  * Contains methods for getting, setting, manipulating, paying tuition for students
  * @author Sharia Hussain, David Lam
  */
-
-import java.text.DecimalFormat;
-
 public class Student {
     private Profile profile;
     private int creditHours;
@@ -83,6 +82,10 @@ public class Student {
      */
     public void setCreditHours(int creditHours) {
         this.creditHours = creditHours;
+    }
+
+    public void setLastPaymentDate(Date lastPaymentDate) {
+        this.lastPaymentDate = lastPaymentDate;
     }
 
     /** Constants used to show if a student is full time*/
